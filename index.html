@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Sabino // Portifólio </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="imagex/png" href="./images/abaIcon.png">
+    <!--Ubunto mono font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
+    
+    
+
+</head>
+<body>
+    <header >
+          <p>Atividades</p>
+           <p id = "dateHour" onmouseover="showTime()" onmouseleave="showDate()"></p>
+           <div class = "selection">
+                <img src="imagens/turn-off.png" alt="" class="iconsColor"> 
+           </div> 
+    </header>
+
+    <menu id="desktopMenu">
+
+        <nav id="menu">
+            <div class = "selectionMenu"  >
+                <img src="imagens/firefox-icon.png" alt="" id="fireFox">
+                <input type="checkbox" class="isOpenedCk" id="fireFoxCk">
+            </div>
+            <div class = "selectionMenu"  >
+                <img src="imagens/blank-folder.png" alt="" id="blankFolder">
+                <input type="checkbox" class="isOpenedCk" id="blankFolderCk">
+            </div>
+            <div class = "selectionMenu" >
+                <img src="imagens/document-img.png" alt="" id="docTab">
+                <input type="checkbox" class="isOpenedCk" id="docCk">
+            </div>
+            <div class = "selectionMenu" >
+                <img src="imagens/help.png" alt="" id="help">
+                <input type="checkbox" class="isOpenedCk" id="helpCk">
+            </div>
+            <div id="line">
+
+            </div>
+            <div class = "selectionMenu" >
+                <img src="imagens/trash-can.png" alt="" id="trashCan">
+                <input type="checkbox" class="isOpenedCk" id="trashCanCk">
+            </div>
+            <nav id="bottomMenu">
+
+                <div id="changeTheme" class="selection">
+                   <img src="imagens/Full-Moon.png" alt="" id="changeImg">
+                   <input type="checkbox" name="ck" id="changeThemeCk">
+                </div>
+
+                <div id="options" class="selection">
+                    <img src="imagens/options.png" alt="" class="iconsColor">
+                </div>
+            </nav>
+            
+        </nav>
+
+        <main id="desktop">
+            <section id ="desktopIcons">
+            <div class = "selection" id="foldDesk">
+                <img src="imagens/linux-folder.png" alt="">
+                <p>Portifólio</p>
+            </div>
+            <div class="selection">
+                
+                <img src="imagens/document-img.png" alt="" class="port_exe" id="docDesk">
+                <p>Ptfl.exe</p>
+            </div>
+            </section>
+
+            <section class = "floatingTabs" id = "folderTab" >  
+
+                <div id="top_folderTab">
+
+                    <section id="goSection">
+
+                        <a id="goBack"><img src="imagens/Chevron Left.png" alt="" class="iconsColor"></a>
+                        <a id="goFront"><img src="imagens/Chevron Left.png" alt="" class="iconsColor" id="goFrontImg"></a>
+                       
+                    </section>
+                    <div>
+                        <img src="imagens/linux-folder.png" alt="" id="linuxFolderTopTab">
+                        <p class = "tabPath">Desktop</p>
+                    </div>
+                
+
+                    <nav id="btnTopTab">
+                        <a id="menuIcon"><img src="imagens/menu-icon.png" alt="" class="iconsColor"></a>
+                        <a id="magGlass"><img src="imagens/magnifying-glass.png" alt="" class="iconsColor"></a>
+
+                        <button class="minBtn" id="minBtn-blankFolder"><img src="imagens/retangle-icon.png" alt="" class="iconsColor"></button>
+                        <button ><img src="imagens/square-icon.png" alt="" class="iconsColor"></button>
+                        <button  class="closeIcon" id="closeIcon-blankFolder"><img src="imagens/close-icon.png" alt=""  class="iconsColor"></button>
+                    </nav>
+                    
+                    
+                </div>
+                <div id="insideContent">
+                    <nav id="leftNav">
+                        <div id="desktopC" class="containerDesktop">
+                            <img src="imagens/blank-folder.png" alt="">
+                            <p>Desktop</p>
+                        </div>
+                        <div id="trashC"  class="containerDesktop">
+                            <img src="imagens/trash-can.png" alt="">
+                            <p>trash</p>
+                        </div>
+                    </nav>
+                    <main id="folderMain">
+
+                         
+
+                        <section id="folderContent">
+
+                            <nav class="default" id="desktopFold">
+                                <div class="file" id="portifolio">
+                                        <img class = "bFolder" src="imagens/linux-folder.png" alt="" >
+                                        <p>Portifólio</p>
+                                </div>
+                            </nav>
+                           
+                            <nav class="default"  id="principal">
+
+                                <div class="file" class="port_exe">
+                                        <img class = "docFolder"   src="imagens/document-img.png" alt="">
+                                        <p>Ptfl.exe</p>
+                                </div>
+
+                                <div class="file"  id="sobreMim">
+                                        <img class = "docFolder"   src="imagens/document-img.png" alt="">
+                                        <p>SobreMim.txt</p>
+                                </div>
+
+                                <div class="file" id="hab">
+                                        <img  class = "bFolder"   src="imagens/blank-folder.png" alt="" >
+                                        <p>Habilidades</p>
+                                </div>
+                                    
+                                <div class="file" id="contato">
+                                        <img  class = "bFolder"   src="imagens/blank-folder.png" alt="" >
+                                        <p>Contato</p>
+                                </div>
+
+                                <div class="file" id="projetos">
+                                        <img class = "bFolder"   src="imagens/blank-folder.png" alt="" >
+                                        <p>Projetos</p>
+                                </div>
+
+                            </nav>
+
+                            <nav class="default" id="contactFolder">
+                                 <div class="file" id="gitLink">
+                                        <img class = "docFolder"   src="imagens/document-img.png" alt="" >
+                                        <p>gitHub.url</p>
+                                </div>
+
+                                <div class="file" id="zapLink">
+                                        <img class = "docFolder"   src="imagens/document-img.png" alt="">
+                                        <p>whatsapp.url</p>
+                                </div>
+                                 <div class="file" id="linkedinLink">
+                                        <img class = "docFolder"   src="imagens/document-img.png" alt="">
+                                        <p>linkedin.url</p>
+                                </div>
+
+                                <div class="file" id="emailLink">
+                                        <img class = "docFolder"   src="imagens/document-img.png" alt="">
+                                        <p>email.url</p>
+                                </div>
+                            </nav>
+
+                            <nav class="default" id="habFolder">
+                                 <div class="file" id="currPdf">
+                                        <img class="pdfImg"  src="imagens/PDF.png" alt="">
+                                        <p>Currículo.pdf</p>
+                                </div>
+
+                                <div class="file" id="habPdf">
+                                        <img class="pdfImg"   src="imagens/PDF.png" alt="">
+                                        <p>Habilidade.pdf</p>
+                                </div>
+                            </nav>
+
+                            <nav class="default" id="projFolder">
+                                 <div class="file"id="theLastFall">
+                                        <img class = "docFolder"   src="imagens/document-img.png" alt="">
+                                        <p>theLastFall.txt</p>
+                                </div>
+
+                                <div class="file" id="cuboMagico">
+                                        <img class = "docFolder"   src="imagens/document-img.png" alt="">
+                                        <p>cuboMagico.txt</p>
+                                </div>
+                                
+                                <div class="file" id="binaryGame">
+                                        <img class = "docFolder" src="imagens/document-img.png" alt="">
+                                        <p>binaryGame.txt</p>
+                                </div>
+                            </nav>
+                        
+
+                        </section>
+                        
+                       <img id="backImage" src="imagens/hacker-man.png" alt="">
+                    </main>
+                </div>
+            </section>
+
+            <section class = "floatingTabs" id="fireFoxTab"> 
+                <div id="top_fireFoxTab">
+                    <nav id="pageName">
+                        <img src="imagens/Error.png" alt="" id="errorImage">
+                        <p>Problem loading page</p>
+                        <img src="imagens/close-icon.png" alt="" class="iconsColor" id="closeFireFox">
+                    </nav>
+                            <div id="topButtons">
+                                 <button class="minBtn" id="minBtn-fireFoxTab"><img src="imagens/retangle-icon.png" alt="" class="iconsColor"></button>
+                                 <button ><img src="imagens/square-icon.png" alt="" class="iconsColor"></button>
+                                 <button  class="closeIcon" id="closeIcon-fireFoxTab"><img src="imagens/close-icon.png" alt="" class="iconsColor" ></button>
+                            </div>
+                </div>
+                <div id="fireFoxTabNavigatorBar">
+                    <nav id="arrowNav">
+                         <img src="imagens/Chevron Left.png" id="leftArrow"alt="" class="reboot">
+                        <img src="imagens/Chevron Left.png" id="rigthArrow" class="reboot">
+                       
+                    </nav>
+                    <img src="imagens/Reboot.png" id="rebootIcon" alt="" class="reboot">
+                    <img src="imagens/Home.png" id = "homeIcon"  alt="" class="reboot">  
+                    <nav id="searchBar">
+                    
+                        <input type="text" name="" id="textSearch" maxlength="50"  class="reboot" >
+                    </nav>
+                </div>
+
+                <div id="insideContentFireFox">
+                    <nav id="contentFF">
+                        <img src="imagens/dino.png" alt="" id="imgDino">
+                        
+                        <section>
+                            <p id="dinoTitle">Offline mode</p>  <br>
+                        <p> Firefox is currently in offline mode  <br> and can’t browse the Web. <br>  <br>
+                            • Press "Try Again" to try going to online mode  <br> and reload the page. </p> 
+                        </section>
+                        
+                        <button  class="reboot">
+                            Try Again
+                        </button>
+
+                    </nav>
+                </div>
+            </section>
+
+             <section class = "floatingTabs" id="trashCanTab"> 
+                <div id="top_trash">
+
+                    <section id="goSectionTrash">
+
+                        <a id="goBackT"><img src="imagens/Chevron Left.png" alt="" class="iconsColor"></a>
+                        <a id="goFrontT"><img src="imagens/Chevron Left.png" alt="" class="iconsColor" id="goFrontImgT"></a>
+                       
+                    </section>
+                    <div>
+                        <img src="imagens/linux-folder.png" alt="" id="linuxFolderTopTabT">
+                        <p class = "tabPathT">Desktop</p>
+                    </div>
+                
+
+                    <nav id="btnTrashTab">
+                        <a id="menuIconT"><img src="imagens/menu-icon.png" alt="" class="iconsColor"></a>
+                        <a id="magGlassT"><img src="imagens/magnifying-glass.png" alt="" class="iconsColor"></a>
+
+                        <button class="minBtn" id="minBtn-trashCanTab"><img src="imagens/retangle-icon.png" alt="" class="iconsColor"></button>
+                        <button ><img src="imagens/square-icon.png" alt="" class="iconsColor"></button>
+                        <button  class="closeIcon" id="closeIcon-trashCanTab"><img src="imagens/close-icon.png" alt="" class="iconsColor"></button>
+                    </nav>
+                    
+                    
+                </div>
+                <div id="insideContentTrash">
+                    <nav id="leftNavTrash">
+                        <div id="desktopCT" class="containerDesktop">
+                            <img src="imagens/blank-folder.png" alt="">
+                            <p>Desktop</p>
+                        </div>
+                        <div id="trashC"  class="containerDesktop">
+                            <img src="imagens/trash-can.png" alt="">
+                            <p>trash</p>
+                        </div>
+                    </nav>
+
+                    <main id="folderMainTrash">
+                    <nav class="default" id="trashFolder">
+                                 <p>Não há nenhum item na Lixeira</p>
+                            </nav>
+                       <img id="backImageT" src="imagens/hacker-man.png" alt="">
+                </main>
+               </div>   
+            </section>
+
+            <section class = "floatingTabs" id="docTab">
+            </section>
+
+            <section class = "floatingTabs" id="helpTab">
+            </section>
+
+           <section id="textReader" class="floatingTabs">
+                <div id="top_textReader">
+                    <nav id="textName">
+                        <img src="imagens/document-img.png" alt="" id="docText">
+                        <p id="fileName"></p>
+                    </nav>
+                    <nav id="topButtons">
+                                 <button class="minBtn" id="minBtn-textReader"><img src="imagens/retangle-icon.png" alt="" class="iconsColor"></button>
+                                 <button ><img src="imagens/square-icon.png" alt="" class="iconsColor"></button>
+                                <button  class="closeIcon" id="closeIcon-textReader"><img src="imagens/close-icon.png" alt="" class="iconsColor" ></button>
+                    </nav>
+                </div>
+                <div id="mainContentTxtR"> 
+                    <nav id="mainTextR">
+                        <p id="sobreMim-txt">
+                                            Meu nome é Pedro Sabino, sou estudante do Cotemig e apaixonado por tecnologia, especialmente jogos.
+                                            Grande parte dos meus projetos gira em torno desse tema, pois para mim é algo muito relaxante — não apenas jogar, mas também criar.
+                                            <br><br>
+                                            Tenho grande interesse por cibersegurança, backend, desenvolvimento de jogos e também filosofia.
+                                            Me considero uma pessoa crítica, focada e com valores éticos bem definidos.
+                                            Prezo pela honestidade, tanto no trabalho quanto na vida.
+                                            <br><br>
+                                            Atualmente, busco aprimorar minhas habilidades e transformar ideias em projetos que unam técnica e criatividade. Sempre estudando para me tornar
+                                            um profissional mais refinado e uma pessoa melhor.
+
+                        </p>
+                        <p id="theLastFall-txt" class="project">
+                                            The Last Fall é um jogo desenvolvido em Java e inteiramente jogado pelo prompt de comando, ou seja, feito completamente em texto.
+                                            <br><br>
+                                            A ideia do projeto era treinar conceitos básicos de MySQL, aplicando operações CRUD em uma linguagem de back-end, além de explorar de forma prática a programação orientada a objetos.
+                                            Esse foi o meu primeiro projeto tanto em Java quanto utilizando POO.
+                                            <br><br>
+                                            Uma breve descrição:<br>
+                                            Quando o Criador abriu o Vazio, a humanidade foi condenada a enfrentar seus próprios monstros.
+                                            Um guerreiro sem nome tentou selar a fenda e desapareceu.
+                                            Séculos depois, o abismo ainda respira horrores — e um novo azarado cai em suas profundezas.
+                                            Seu destino decidirá se o mundo conhecerá um novo herói... ou mais um demônio.
+
+                                            <br><br>
+                                            O jogo ainda está em desenvolvimento, mas já está disponível no meu GitHub para quem quiser acompanhar o progresso.
+                        </p>
+                        <p id="cuboMagico-txt" class="project">
+                                            O cubo mágico, é um projeto bem simples feito em C#, ele simula um cubo mágico 2x2. Foi meu primeiro projeto feito em C#, e o primeiro projeto
+                                            mais complexo que eu tentei fazer.
+                                            <br><br>
+                                            Esse projeto tem o intuito de reforçar o conhecimento em arrays, loops e uma introdução a métodos.
+                                            <br><br>
+                                            Ele já está pronto e disponível para qualquer um no meu git-hub.
+                        </p>
+                        <p id="binaryGame-txt" class="project">
+                                            Binary game, é um projeto inspirado no jogo binary game, o objetivo é realizar o cálculo de números binários e decimais, passando de decimal para binário e vice-versa.
+                                            <br><br>
+                                            Esse projeto foi feito com o objetivo de aprimorar o conhecimento em métodos, loops e continuidade.
+                                            <br><br>
+                                            Ele não está totalmente pronto, mas já está disponível no meu GitHub para quem quiser acompanhar o progresso.
+
+                        </p>
+                    </nav>
+                </div>
+                <div id="footerTxtR">
+                    <button id="btnFTxt">Ver no git-hub</button>
+                </div>
+           </section>
+        </main>
+      
+
+    </menu>
+   
+      <footer id="footer">
+        <p>contato → sabinop049@gmail.com</p>
+    </footer> 
+    
+     <script src="./main.js"></script>
+</body>
+</html>
