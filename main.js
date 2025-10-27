@@ -469,9 +469,18 @@ files.forEach(element =>{
     else if(e.currentTarget.id === "projetos"){
        goTo(4)
     }
-    if(e.currentTarget.id === "portifolio"){
+    else if(e.currentTarget.id === "portifolio"){
       goTo(1)
     }
+    if(e.currentTarget.id === "theLastFall"){
+      openTextReader("theLastFall")
+    }
+    if(e.currentTarget.id === "cuboMagico"){
+      openTextReader("cuboMagico")
+    }
+    if(e.currentTarget.id === "binaryGame"){
+      openTextReader("binaryGame")
+    }                                                               
   })
 })
 
@@ -483,12 +492,15 @@ function openTerminal(element){
 
 function openTextReader(content){
   let btnTxt = document.getElementById("btnFTxt")
+  closeTextReader();
   abrirAbas("textReader")
   
-
+ 
   document.getElementById("fileName").innerHTML = content + ".txt"
 
   let file = document.getElementById(content + "-txt")
+
+
 
   file.style.opacity = "1";
   file.style.display = "block";
@@ -580,7 +592,7 @@ const pathChangers = document.querySelectorAll(".containerDesktop")
 pathChangers.forEach(e=>{
   e.addEventListener('click', () => {
     
-     if(e.id === "desktopC"){
+  if(e.id === "desktopC"){
     changePathName(0)
   }
   else if(e.id === "desktopCT"){
@@ -589,8 +601,14 @@ pathChangers.forEach(e=>{
   }
   else{
     abrirAbas("trashCanTab")
+    openTabs.trashCanTab = true;
+    document.getElementById("trashCanCk").checked = true
+    updateBackGround()
   }
-  })
+
+ 
+  }
+)
  
 })
 
