@@ -7,7 +7,7 @@ const path = [
             ]
 
 let actualPath = path[0];
-let terminalIdentifier = "PedroSabino@PedroSabino-desktop:~/" + actualPath + "$";
+let terminalIdentifier = "PedroSabino@PedroSabino-desktop:~/" + actualPath;
 let ordem = ["fireFoxTab", "blankFolderTab", "docTab", "helpTab", "trashCanTab","textReader"];
 
 
@@ -895,4 +895,15 @@ function choosen(elemento){
   })
 
   
+}
+let txtTerminal = document.getElementById("output").innerText
+
+document.getElementById("terminalIdentifier").innerHTML = terminalIdentifier;
+
+
+const longArray = txtTerminal.split("}")
+
+for (let index = 0; index < longArray.length; index++) {
+  const element = longArray[index];
+  txtTerminal.innerHTML += element
 }
