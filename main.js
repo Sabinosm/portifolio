@@ -7,7 +7,7 @@ const path = [
             ]
 
 let actualPath = path[0];
-let terminalIdentifier = "PedroSabino@PedroSabino-desktop:~" + actualPath + "$";
+let terminalIdentifier = "PedroSabino@PedroSabino-desktop:~/" + actualPath + "$";
 let ordem = ["fireFoxTab", "blankFolderTab", "docTab", "helpTab", "trashCanTab","textReader"];
 
 
@@ -16,7 +16,8 @@ let openTabs = {
   blankFolderTab: false,
   docTab: false,
   helpTab: false,
-  trashCanTab: false
+  trashCanTab: false,
+  optionsTab: false
 }
 
 function showDate() {
@@ -119,14 +120,22 @@ elementCK.forEach(element => {
       }
 
       else if(nomeElemento === "trashCanCk"){
-      if(!openTabs.trashCanTab){
-          openTabs.trashCanTab = true;
-        }
         openTabs.trashCanTab = true;
         tabName = "trashCanTab"
       }
 
-      abrirAbas(tabName);
+      else if(nomeElemento === "optionsCk"){
+        if(!openTabs.optionsTab){
+          openTabs.optionsTab = true;
+        }
+        tabName = "optionsTab"
+        abrirOuFecharOptions(true)
+      }
+      
+      if(tabName !== "optionsTab"){
+          abrirAbas(tabName);
+      }
+      
     }
     else{
 
@@ -151,11 +160,64 @@ elementCK.forEach(element => {
         document.getElementById("trashCanTab").style.opacity = 0
         document.getElementById("trashCanTab").style.display = "none";
       }
+
+      else if(nomeElemento === "optionsCk"){
+        abrirOuFecharOptions(false)
+      }
     }
 
     updateBackGround()
     
     })});
+
+function abrirOuFecharOptions(simOuNao){
+  let t = document.getElementById("optionsTab")
+  let o = document.getElementById("options")
+  if(simOuNao){
+    document.getElementById("todos").click()
+  t.style.opacity = "0.8"
+  t.style.display = "flex"
+  openTabs.optionsTab = true;
+  o.classList.add("bg")
+    document.getElementById("optionsCk").checked = true;
+  }
+  else{
+  o.classList.remove("bg")
+  t.style.opacity = "0"
+  t.style.display = "none"
+  openTabs.optionsTab = false;
+  document.getElementById("optionsCk").checked = false;
+  }
+ 
+}
+
+function openTerminal(){
+
+}
+const optU = document.querySelectorAll(".divUbuntu")
+
+optU.forEach(div => {
+  div.addEventListener('click', () => {
+    abrirOuFecharOptions(false)
+    if(div.id ==="BF"){
+      document.getElementById("blankFolderCk").click();
+    }
+    else if(div.id ==="LX"){
+      document.getElementById("trashCanCk").click();
+    }
+    else if(div.id ==="HE"){
+      document.getElementById("helpCk").click();
+    }
+    else if(div.id ==="FF"){
+      document.getElementById("fireFoxCk").click();
+    }
+    else{
+      document.getElementById("docCk").click(); //portifolio
+    }
+  })
+})
+
+
 
 
 const btnClose = document.querySelectorAll(".closeIcon");
@@ -190,6 +252,12 @@ btnClose.forEach(btn =>{
     else if(idDoBotao === "closeIcon-textReader"){
       closeTextReader()
     }
+    else if(idDoBotao === "closeIcon-pdfReader"){
+      closePdfReader()
+    }
+    else if(idDoBotao === "closeUbuntu"){
+        abrirOuFecharOptions(false)
+      }
    
     updateBackGround()
 
@@ -220,6 +288,9 @@ btnMin.forEach(btn =>{
     }
     else if(idDoBotao === "minBtn-textReader"){
       closeTextReader()
+    }
+    else if(idDoBotao === "minBtn-pdfReader"){
+      closePdfReader()
     }
 
     updateBackGround()
@@ -442,11 +513,6 @@ function mouseMove(e, aba) {
   tab.style.top = nextTop + 'px';
 }
 
-
-function pageOpened(e,referenteTab){
- 
-}
-
 let files = document.querySelectorAll(".file")
 
 files.forEach(element =>{
@@ -472,15 +538,21 @@ files.forEach(element =>{
     else if(e.currentTarget.id === "portifolio"){
       goTo(1)
     }
-    if(e.currentTarget.id === "theLastFall"){
+    else if(e.currentTarget.id === "theLastFall"){
       openTextReader("theLastFall")
     }
-    if(e.currentTarget.id === "cuboMagico"){
+    else if(e.currentTarget.id === "cuboMagico"){
       openTextReader("cuboMagico")
     }
-    if(e.currentTarget.id === "binaryGame"){
+    else if(e.currentTarget.id === "binaryGame"){
       openTextReader("binaryGame")
-    }                                                               
+    }   
+    else if(e.currentTarget.id === "habPdf") {
+      openPdfReader("Habilidades")
+    }
+    else if(e.currentTarget.id === "currPdf") {
+      openPdfReader("Currículo")
+    }                                                                 
   })
 })
 
@@ -499,8 +571,6 @@ function openTextReader(content){
   document.getElementById("fileName").innerHTML = content + ".txt"
 
   let file = document.getElementById(content + "-txt")
-
-
 
   file.style.opacity = "1";
   file.style.display = "block";
@@ -551,8 +621,68 @@ function closeTextReader(){
 }
 
 function openPdfReader(content){
+ 
+  const elements = document.querySelectorAll(".btnPdf")
+
+  abrirAbas("pdfReader")
+
+  document.getElementById("fileName").innerHTML = content + ".txt"
+  let file = document.getElementById(content + "-pdf")
+
+  file.style.opacity = "1"
+  file.style.display = 'block'
+ 
+ if(content === "Currículo"){
+     elements.forEach(e=>{
+    if(e.id === "otherPage"){
+       e.onclick = () => {
+        window.open("imagens/PSSM_curriculo.pdf","_blank")
+       }
+    }
+    else{
+      e.onclick = () => {
+        const link = document.createElement('a');
+        link.href = 'imagens/PSSM_curriculo.pdf';          // caminho do arquivo
+        link.download = 'curriculo-Pedro-Sabino.pdf';  // nome que será salvo
+        link.click(); 
+       }
+    }
+  })
+ }
+ else{
+  if(e.id === "otherPage"){
+       e.onclick = () => {
+        window.open("imagens/PSSM_curriculo.pdf","_blank")
+       }
+    }
+    else{
+      e.onclick = () => {
+        const link = document.createElement('a');
+        link.href = 'imagens/PSSM_curriculo.pdf';          // caminho do arquivo
+        link.download = 'curriculo-Pedro-Sabino.pdf';  // nome que será salvo
+        link.click(); 
+       }
+    }
+ }
+
+  
+}
+function closePdfReader(){
+  let pdf = document.getElementById("pdfReader")
+ pdf.style.opacity = "0";
+ pdf.style.display = "none";
+
+  const imagens = document.querySelectorAll(".pdfs")
+
+  imagens.forEach(e => {
+    e.style.opacity = "0";
+    e.style.display = "none";
+  })
 
 }
+
+  
+ 
 
 
 let navsFolderC = document.querySelectorAll(".default")
@@ -688,3 +818,81 @@ input.addEventListener("keyup", (e) => {
   }
 });
 
+const links = document.querySelectorAll('[id$="Link"]')
+
+links.forEach(link=>{
+  link.addEventListener('dblclick', () => {
+    if(link.id === "gitLink"){
+      window.open("https://github.com/Sabinosm","_blank")
+    }
+    else if(link.id === "zapLink"){
+      window.open("https://wa.me/5531999268312","_blank")
+    }
+    else if(link.id === "linkedinLink"){
+      window.open("https://www.linkedin.com/in/pedro-sabino-santos-machado","_blank")
+    }
+    else{
+
+    let texto = "https://mail.google.com/mail/u/0/?pli=1#inbox?" + 
+                "compose=GTvVlcSDbhDwbkCKRRMfwZfJtfZJdQRknLrndgq" + 
+                "qxJNBkthJWqbZWrccBLKHCrzxwgmvCzQPqvcpq";
+
+    navigator.clipboard.writeText(texto)
+    .then(() => {
+      alert("Link copiado!");
+    
+      window.open(texto, "_blank");
+    })
+    .catch(err => console.error("Erro:", err));
+    }
+  })
+
+     
+})
+
+function searchBar() {
+  const nomes = document.querySelectorAll(".searchContent");
+  let searchText = document
+    .getElementById("searchUbuntu")
+    .value.toLowerCase()
+    .replace(/\s+/g, "");   
+
+  nomes.forEach(element => {
+    let respectiveDiv = element.closest(".divUbuntu");
+    respectiveDiv.style.opacity = "0";
+    respectiveDiv.style.display = "none";
+
+    let textoE = element.innerText
+      .toLowerCase()
+      .replace(/\s+/g, ""); 
+
+    if (textoE.includes(searchText)) {
+      respectiveDiv.style.opacity = "1";
+      respectiveDiv.style.display = "flex";
+    }
+  });
+
+}
+function choosen(elemento){
+  if(elemento.id === "todos"){
+    document.getElementById("frequente").classList.remove("choosen")
+    elemento.classList.add("choosen")
+  }
+  else{
+    document.getElementById("todos").classList.remove("choosen")
+    elemento.classList.add("choosen")
+  }
+  const  x = document.querySelectorAll(".divUbuntu")
+
+  x.forEach(x => {
+    x.style.opacity = "0"
+    x.style.display = "none"
+
+  setTimeout(() =>{
+    x.style.opacity = "1"
+    x.style.display = "flex"
+  },200)
+  })
+
+  
+}

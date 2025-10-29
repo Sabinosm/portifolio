@@ -468,7 +468,8 @@ background-color: VAR(--HOVERTABBUTTOM);
     --bgImg: url("imagens/background-img-panther.png");
     --bgHover: rgba(217, 217, 217, 0.10);
     --icon: invert(0%);
-    --bgMenu: rgba(24, 14, 21, 0.8);
+    --bgMenu: rgba(24, 14, 21, 0.815);
+    --bgMenuOpacity1: #300A24;
     --txtColor: white;
     --smoothWhite: #DDDDDD;
     --headerColor:#131313;
@@ -477,6 +478,7 @@ background-color: VAR(--HOVERTABBUTTOM);
     --bgFolderMain:#272226;
     --topTabButtonColor:#373737;
     --hoverTabButtom: #1B1B1B;
+    --buttonUbuntu: #040004;
 }
 
 .ligthMode{
@@ -485,6 +487,7 @@ background-color: VAR(--HOVERTABBUTTOM);
     --icon:  invert(1) brightness(0) contrast(100%);
     --bgHover: rgba(38, 38, 38, 0.1);
     --bgMenu: rgba(242, 233, 239, 0.8);
+    --bgMenuOpacity1:#CFF5DB;
     --txtColor: black;
     --headerColor:#ECECEC;
     --footerColor:#C4C3C2;
@@ -493,6 +496,7 @@ background-color: VAR(--HOVERTABBUTTOM);
     --topTabButtonColor:#C8C8C8;
     --smoothWhite: #222222;    
     --hoverTabButtom: #E4E4E4;
+    --buttonUbuntu:#FBFFFB;
 }
  .pdfImg{
     width: 50px;
@@ -574,12 +578,12 @@ background-color: VAR(--HOVERTABBUTTOM);
     margin-left: 10%;
 
 }
-#topButtons{
+.topButtons{
     right: 10px;
     position: absolute;
 }
 
-#topButtons button{
+.topButtons button{
     background-color: transparent;
 }
 #fireFoxTabNavigatorBar{
@@ -881,8 +885,8 @@ background-color: VAR(--HOVERTABBUTTOM);
     position: fixed;
     left: 950px;
     top: 100px;
-    opacity: 1;
-    display: block;
+    opacity: 0;
+    display: none;
 }
 #docText{
     width: 23px;
@@ -949,4 +953,302 @@ background-color: VAR(--HOVERTABBUTTOM);
 #binaryGame-txt{
     opacity: 0;
     display: none;
+}
+#top_pdfReader{
+       width: 100%;
+    height: 35px;
+    background-color: var(--topTabColor);
+    display: flex;
+    align-items: center;
+    font-family: 'Ubuntu Mono', monospace;
+    color: var(--txtColor);
+    text-align: center;
+    border-radius: 3px;
+    position: relative;
+    border-bottom:var(--topTabButtonColor) solid 3px ;
+
+}
+#pdfReader{
+    width: 50%;
+    height: 550px;
+    position: fixed;
+    left: 950px;
+    top: 100px;
+    opacity: 0;
+    display: none;
+}
+#imgPdf{
+    width: 23px;
+    height: 23px;
+    margin-right: 5%;
+}
+#pdfName{
+    margin-left: 3%;
+    width: 300px;
+    display: flex;
+    text-align: left;
+    align-items: center; 
+}
+#mainContentPdf{
+    width: 100%;
+    background-color: var(--bgFolderMain);
+    height: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#footerPdf{
+    width: 100%;
+    height: 40px;
+    background-color: var(--topTabColor);
+    border-top:var(--topTabButtonColor) solid 3px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+.btnPdf{
+    opacity: 1;
+    text-decoration: none;
+    font-family: 'Ubuntu Mono', monospace;
+    color: var(--txtColor);
+    margin-right: 5%;
+    font-size: 14px;
+    display: block;
+    text-align: left;
+    background-color: #00aaff;
+    padding: 3px;
+}
+#mainPdf{
+    width: 90%;
+    height: 90%;
+    font-family: 'Ubuntu Mono', monospace;
+    color: var(--txtColor);
+}
+#optionsTab{
+    width: 95.2%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    background-color: var(--bgMenu);
+    opacity: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+#options.bg{
+    opacity: 1;
+    background-color: var(--bgHover);
+    transition: all 0.3s ease;
+}
+
+#mainUbuntu{
+    margin-top: 2%;
+    width: 40%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    padding-left: 1.9%;
+}
+#topUbuntu{
+    width: 100%;
+    height: 10%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#search-box {
+  position: relative;
+  width: 100%;
+   display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#search-box input {
+    width: 30%;
+    height: 40%;
+  padding: 8px 12px 8px 32px; 
+  border: 2px solid  #EF8761;
+  border-radius: 20px;
+  outline: none;
+}
+#closeUbuntu{
+    position: absolute;
+    top: 15px;
+    right: 50px;
+    font-family: 'Ubuntu Mono', monospace;
+    background-color: transparent;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+#closeUbuntu img{
+    width: 12px;
+}
+#closeUbuntu:hover{
+    background-color: var(--bgHover);
+}
+#magGlassU{
+    filter: invert(100%);
+    position: absolute;
+    left: 35.7%;
+    height: 15px;
+}
+.divUbuntu{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Ubuntu Mono', monospace;
+    color: var(--txtColor);
+    font-size: 16px;
+    width: 145px;
+    padding: 8px;
+    height: 145px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin-right: 5%;
+    transition: 0.2s;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.divUbuntu img{
+    width: 70px;
+    margin-bottom: 10px;
+}
+.divUbuntu:hover{
+    background-color: var(--bgHover);
+}
+#footerUbuntu{
+    
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    
+}
+#footerUbuntu button{
+    width: 130px;
+    height: 40px;
+    font-family: 'Ubuntu Mono', monospace;
+    color: var(--txtColor);
+    font-size: 16px;
+    background-color: var(--buttonUbuntu);
+    opacity: 1;
+    border: none;
+}
+#frequente{
+    margin-right: 2%;
+}
+#footerUbuntu button:hover{
+    background-color: var(--buttonUbuntu) opacity 0.8;
+}
+#footerUbuntu button.choosen{
+    border-bottom: #9F3412 solid 2px;
+}
+#footerUbuntu button.choosen:hover{
+    background-color: var(--buttonUbuntu) opacity 0.8;
+     border-bottom: #9F3412 solid 4px;
+}
+
+#top_docTab button{
+     height: 28px;
+    width: 28px;
+    border-radius: 50px;
+    border-width: 0.25px;
+    border-color:transparent;
+    background-color: var(--topTabButtonColor) ;
+    margin-right: 8px;
+    text-align: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#top_docTab button:hover{
+background-color: VAR(--HOVERTABBUTTOM);
+}
+#docTab{
+    width: 48%;
+    height: 650px;
+    position: fixed;
+    left: 950px;
+    top: 200px;
+    opacity: 1;
+    display: block;
+    background-color: var(--bgMenuOpacity1);
+    opacity: 1;
+}
+#top_docTab{
+     width: 100%;
+    height: 60px;
+    background-color: var(--topTabColor);
+    display: flex;
+    align-items: center;
+    font-family: 'Ubuntu Mono', monospace;
+    color: var(--txtColor);
+    text-align: center;
+    border-bottom:var(--topTabButtonColor) solid 3px ;
+    border-radius: 3px;
+    position: relative;
+}
+#top_docTab a{
+    width: 35px;
+    height: 35px;
+    background-color: var(--topTabButtonColor);
+    display: block;
+    justify-content: center;
+    border-radius: 5px;
+    border: VAR(--HOVERTABBUTTOM) solid 1px;
+    cursor: pointer;
+    transition: 0.3s;
+    
+}
+#top_docTab a:hover{
+    background-color: VAR(--HOVERTABBUTTOM);
+}
+
+#magGlassDoc img{
+ width: 50%;
+    
+}
+#magGlassDoc{
+    padding-top:6px ;
+    margin-right: 10%;
+}
+#menuIconDoc img{
+    width: 70%;
+}
+#menuIconDoc{
+    padding-top:9px;
+    margin-right: 4.5%;
+}
+#topDocBtn{
+    width: 230px;
+    display: flex;
+    align-items: center;
+}
+#top_docTab div{
+     width: 35px;
+    height: 35px;
+    background-color: var(--topTabButtonColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: VAR(--HOVERTABBUTTOM) solid 1px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left: 3%;
+}
+#top_docTab div:hover{
+    background-color: VAR(--HOVERTABBUTTOM);
+}
+#terminalTop{
+    position: absolute;
+    left: 30%;
 }
