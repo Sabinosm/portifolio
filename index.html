@@ -36,7 +36,7 @@
                 <input type="checkbox" class="isOpenedCk" id="blankFolderCk">
             </div>
             <div class = "selectionMenu" >
-                <img src="imagens/document-img.png" alt="" id="docTab">
+                <img src="imagens/document-img.png" alt="" id="doc">
                 <input type="checkbox" class="isOpenedCk" id="docCk">
             </div>
             <div class = "selectionMenu" >
@@ -59,6 +59,7 @@
 
                 <div id="options" class="selection">
                     <img src="imagens/options.png" alt="" class="iconsColor">
+                    <input type="checkbox" class="isOpenedCk" id="optionsCk">
                 </div>
             </nav>
             
@@ -186,7 +187,7 @@
 
                                 <div class="file" id="habPdf">
                                         <img class="pdfImg"   src="imagens/PDF.png" alt="">
-                                        <p>Habilidade.pdf</p>
+                                        <p>Habilidades.pdf</p>
                                 </div>
                             </nav>
 
@@ -222,7 +223,7 @@
                         <p>Problem loading page</p>
                         <img src="imagens/close-icon.png" alt="" class="iconsColor" id="closeFireFox">
                     </nav>
-                            <div id="topButtons">
+                            <div class="topButtons">
                                  <button class="minBtn" id="minBtn-fireFoxTab"><img src="imagens/retangle-icon.png" alt="" class="iconsColor"></button>
                                  <button ><img src="imagens/square-icon.png" alt="" class="iconsColor"></button>
                                  <button  class="closeIcon" id="closeIcon-fireFoxTab"><img src="imagens/close-icon.png" alt="" class="iconsColor" ></button>
@@ -307,9 +308,6 @@
                </div>   
             </section>
 
-            <section class = "floatingTabs" id="docTab">
-            </section>
-
             <section class = "floatingTabs" id="helpTab">
             </section>
 
@@ -319,7 +317,7 @@
                         <img src="imagens/document-img.png" alt="" id="docText">
                         <p id="fileName"></p>
                     </nav>
-                    <nav id="topButtons">
+                    <nav class="topButtons">
                                  <button class="minBtn" id="minBtn-textReader"><img src="imagens/retangle-icon.png" alt="" class="iconsColor"></button>
                                  <button ><img src="imagens/square-icon.png" alt="" class="iconsColor"></button>
                                 <button  class="closeIcon" id="closeIcon-textReader"><img src="imagens/close-icon.png" alt="" class="iconsColor" ></button>
@@ -374,6 +372,88 @@
                 </div>
                 <div id="footerTxtR">
                     <button id="btnFTxt">gitHub</button>
+                </div>
+           </section>
+
+           <section id="pdfReader" class="floatingTabs">
+                <div id="top_pdfReader">
+                    <nav id="pdfName">
+                        <img src="imagens/PDF.png" alt="" id="imgPdf">
+                        <p id="fileNamePdf"></p>
+                    </nav>
+                    <nav class="topButtons">
+                                 <button class="minBtn" id="minBtn-pdfReader"><img src="imagens/retangle-icon.png" alt="" class="iconsColor"></button>
+                                 <button ><img src="imagens/square-icon.png" alt="" class="iconsColor"></button>
+                                <button  class="closeIcon" id="closeIcon-pdfReader"><img src="imagens/close-icon.png" alt="" class="iconsColor" ></button>
+                    </nav>
+                </div>
+                <div id="mainContentPdf"> 
+                      <nav id="mainPdf">
+                            <embed src="imagens/PSSM_curriculo.pdf" type="application/pdf" width="100%" height="100%" id="Currículo-pdf" class="pdfs">
+                            <img src="" alt="" id="Habilidades" class="pdfs">
+                      </nav>
+                    </div> 
+
+                <div id="footerPdf">
+                    <button id="otherPage" class="btnPdf">Abrir em outra página</button>
+                    <button id="downLoad" class="btnPdf">Download</button>
+                </div>
+           </section>
+
+
+           <section id="optionsTab" class="floatingTabs">
+                <div id="topUbuntu">
+                    <div id="search-box">
+                        <input id="searchUbuntu"type="text" placeholder="Type to search" onkeyup="searchBar()">
+                        <img src="imagens/magnifying-glass.png" alt="" id="magGlassU">
+                    </div>
+                    <button id="closeUbuntu" class="closeIcon">
+                        <img src="imagens/close-icon.png" alt="">
+                    </button>
+                    
+                </div>
+                <div id="mainUbuntu">
+                    <nav class="divUbuntu" id="FF">
+                        <img src="imagens/firefox-icon.png" alt="">
+                        <p class="searchContent">Fire Fox</p>
+                    </nav>
+                    <nav class="divUbuntu" id="BF">
+                        <img src="imagens/blank-folder.png" alt="">
+                        <p class="searchContent">Explorador de arquivos</p>
+                    </nav>
+                    <nav class="divUbuntu" id="HE">
+                        <img src="imagens/help.png" alt="">
+                        <p class="searchContent">Ajuda</p>
+                    </nav>
+                    <nav class="divUbuntu" id="LX">
+                        <img src="imagens/trash-can.png" alt="">
+                        <p class="searchContent">Lixeira</p>
+                    </nav>
+                    <nav class="divUbuntu" id="PF">
+                        <img src="imagens/document-img.png" alt="">
+                        <p class="searchContent">Portifolio</p>
+                    </nav>
+                    
+                </div>
+                <nav id="footerUbuntu">
+                        <button id="frequente" onclick="choosen(this)">Frequente</button>
+                        <button id="todos" onclick="choosen(this)">Todos</button>
+                    </nav>
+           </section>
+
+           <section class="floatingTabs" id="docTab">
+                <div id="top_docTab">
+                      <div><img src="imagens/plus.png" alt=""></div>
+                      <p id="terminalTop">PedroSabino@PedroSabino-desktop: ~</p>
+                    <nav class="topButtons" id="topDocBtn">
+                                <a id="menuIconDoc"><img src="imagens/menu-icon.png" alt="" class="iconsColor"></a>
+                                <a id="magGlassDoc"><img src="imagens/magnifying-glass.png" alt="" class="iconsColor"></a>
+
+
+                                 <button class="minBtn" id="minBtn-docTab"><img src="imagens/retangle-icon.png" alt="" class="iconsColor"></button>
+                                 <button ><img src="imagens/square-icon.png" alt="" class="iconsColor"></button>
+                                <button  class="closeIcon" id="closeIcon-docTab"><img src="imagens/close-icon.png" alt="" class="iconsColor" ></button>
+                    </nav>
                 </div>
            </section>
         </main>
