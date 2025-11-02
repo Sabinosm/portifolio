@@ -1331,8 +1331,8 @@ background-color: VAR(--HOVERTABBUTTOM);
     position: fixed;
     left: 950px;
     top: 100px;
-    opacity: 1;
-    display: block;
+    opacity: 0;
+    display: none;
 }
 #helpText{
     width: 20px;
