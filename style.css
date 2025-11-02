@@ -487,7 +487,7 @@ background-color: VAR(--HOVERTABBUTTOM);
     --icon:  invert(1) brightness(0) contrast(100%);
     --bgHover: rgba(38, 38, 38, 0.1);
     --bgMenu: rgba(242, 233, 239, 0.8);
-    --bgMenuOpacity1:#CFF5DB;
+    --bgMenuOpacity1: #5c5c5c;
     --txtColor: black;
     --headerColor:#ECECEC;
     --footerColor:#C4C3C2;
@@ -901,7 +901,7 @@ background-color: VAR(--HOVERTABBUTTOM);
     align-items: center; 
 }
 #mainContentTxtR{
-    width: 100%px;
+    width: 100%;
     background-color: var(--bgFolderMain);
     height: 560px;
     display: flex;
@@ -1155,7 +1155,6 @@ background-color: VAR(--HOVERTABBUTTOM);
     background-color: var(--buttonUbuntu) opacity 0.8;
      border-bottom: #9F3412 solid 4px;
 }
-
 #top_docTab button{
      height: 28px;
     width: 28px;
@@ -1173,7 +1172,7 @@ background-color: VAR(--HOVERTABBUTTOM);
 background-color: VAR(--HOVERTABBUTTOM);
 }
 #docTab{
-    width: 48%;
+    width: 40%;
     height: 650px;
     position: fixed;
     left: 750px;
@@ -1231,6 +1230,7 @@ background-color: VAR(--HOVERTABBUTTOM);
     width: 230px;
     display: flex;
     align-items: center;
+    right: 0;
 }
 #top_docTab div{
      width: 35px;
@@ -1249,8 +1249,9 @@ background-color: VAR(--HOVERTABBUTTOM);
     background-color: VAR(--HOVERTABBUTTOM);
 }
 #terminalTop{
-    position: absolute;
-    left: 30%;
+    position: relative;    
+    left: 25%;
+    margin-right: 20px;
 }
 #mainTerminal{
     width: 100%;
@@ -1259,21 +1260,100 @@ background-color: VAR(--HOVERTABBUTTOM);
     font-family: 'Ubuntu Mono', monospace;
     color: var(--txtColor);
     text-align: center;
-    padding: 5px;
+    padding: 5px;   
 }
 #textTerminal{
     width: 100%;
     height: 100%;
     text-align: left;
+    overflow-y: auto;
 }
-#terminalIdentifier{
+.terminalIdentifier{
     color: #26A168;
+    width: fit-content;
 }
-.cursor {
-    animation: blink 1s step-end infinite;
-    width: 5px;
+.greenReady{
+  color: #00ff66;
+  font-weight: bold;
 }
-@keyframes blink{
-            from, to { background-color: transparent; }
-            50% { background-color: #fff; }
+#output {
+  height: fit-content;
+  width: 100%;
+  padding: 0;
+  
+}
+.sequencyReady{
+    display: none;
+    opacity: 0;
+}
+
+#sistemReady{
+    display: none;
+    opacity: 0;
+}
+#terminalInput{
+    font-family: 'Ubuntu Mono', monospace;
+    color: var(--txtColor);
+    background-color: transparent;
+    border: none;
+    width: 500px;
+    font-size: 1em;
+    padding: 0;
+    margin-left: 10px;
+    
+    
+}
+#terminalInput:focus{
+  outline: none;      
+  box-shadow: none;  
+}
+#terminalContainerInput{
+    opacity: 0;
+    display: none;
+}
+#top_helpTab{
+   width: 100%;
+    height: 35px;
+    background-color: var(--topTabColor);
+    display: flex;
+    align-items: center;
+    font-family: 'Ubuntu Mono', monospace;
+    color: var(--txtColor);
+    text-align: center;
+    border-radius: 3px;
+    position: relative;
+    border-bottom:var(--topTabButtonColor) solid 3px ;
+
+}
+#helpTab{
+    width: 25%;
+    height: 550px;
+    position: fixed;
+    left: 950px;
+    top: 100px;
+    opacity: 1;
+    display: block;
+}
+#helpText{
+    width: 20px;
+    height: 20px;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+#helpTabContent{
+    width: 100%;
+    background-color: var(--bgMenuOpacity1);
+    height: 560px;
+    display: flex;
+    font-family: 'Ubuntu Mono', monospace;
+    color: var(--txtColor);
+    justify-content: left;
+    padding: 5%;
+    opacity: 1;
+    flex-direction: column;
+    overflow-y: auto;
+}
+.greenHelp{
+    color: #26A168;
+    font-weight: bold;
 }

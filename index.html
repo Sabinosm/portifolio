@@ -309,6 +309,46 @@
             </section>
 
             <section class = "floatingTabs" id="helpTab">
+                <div id="top_helpTab">
+                        <img src="imagens/help.png" alt="" id="helpText">
+                        <p >Help</p>
+                    </nav>
+                    <nav class="topButtons">
+                                 <button class="minBtn" id="minBtn-helpTab"><img src="imagens/retangle-icon.png" alt="" class="iconsColor"></button>
+                                 <button ><img src="imagens/square-icon.png" alt="" class="iconsColor"></button>
+                                <button  class="closeIcon" id="closeIcon-helpTab"><img src="imagens/close-icon.png" alt="" class="iconsColor" ></button>
+                    </nav>
+                </div>
+                <div id="helpTabContent">
+                    <p><span class="greenHelp">O que é?</span><br> este projeto é um portifólio, para demonstrar um pouco do que eu sei fazer
+                    e como eu posso agregar em um trabalho. </p>
+                    <br>
+                    <p><span class="greenHelp">Como funciona?</span><br>Basicamente, navegar como se estivesse em um computador comum, 
+                        pelas pastas, ou se preferir pelo terminal.</p>
+                         <br>
+                    <p><span class="greenHelp">Comandos e Árvore de diretórios</span><br>
+                    <br><span class="greenHelp"># ---- comandos ----#</span><br><br>
+                    ls, cd -dir-, pwd, nano -file.txt-, view -file.pdf- <br><br>
+                    <span class="greenHelp"># ---- Árvore de diretórios ----#</span><br><br>
+                    /portfolio<br>
+                    ├── sobre-mim.txt<br>
+                    ├── projetos/<br>
+                    │    ├── theLastFall.txt<br>
+                    │    ├── binaryGame.txt<br>
+                    │    └── cuboMagico.txt<br>
+                    │   <br>
+                    ├── contatos/<br>
+                    │    ├── email.url<br>
+                    │    ├── linkedin.url<br>
+                    │    ├── whatsapp.url<br>
+                    │    └── github.url<br>
+                    │    <br>
+                    └── habilidades/<br>
+                        ├── habilidades.pdf<br>
+                        └── curriculo.pdf<br></p>
+                    <br>
+
+                </div>
             </section>
 
            <section id="textReader" class="floatingTabs">
@@ -444,7 +484,7 @@
            <section class="floatingTabs" id="docTab">
                 <div id="top_docTab">
                       <div><img src="imagens/plus.png" alt=""></div>
-                      <p id="terminalTop">PedroSabino@PedroSabino-desktop: ~</p>
+                      <p id="terminalTop">PedroS@-desktop: ~</p>
                     <nav class="topButtons" id="topDocBtn">
                                 <a id="menuIconDoc"><img src="imagens/menu-icon.png" alt="" class="iconsColor"></a>
                                 <a id="magGlassDoc"><img src="imagens/magnifying-glass.png" alt="" class="iconsColor"></a>
@@ -457,51 +497,66 @@
                 </div>
                 <div id="mainTerminal">
                     <div id="textTerminal">
-                        <div>
-                            <span id="terminalIdentifier"></span>
+                        
+                            <span class="terminalIdentifier" contenteditable="false"> </span>
                             <p id="output">
-                                Iniciando processo... <br>}
-                                Verificando arquivos do sistema... <br>}
-                                Dependência A: OK <br>}
-                                Dependência B: OK <br>}
-                                Dependência C: OK <br>}
-                                Verificação de integridade concluída. <br> }
-                                Carregando módulos... <br> }
-                                Módulo 1: OK <br>}
-                                Módulo 2: OK <br>}
-                                Módulo 3: Falha ao carregar, tentando novamente... <br> }
-                                Módulo 3: OK <br> }
-                                Inicialização do serviço de rede... <br> }
-                                Conexão estabelecida. <br> }
-                                Verificando portas de comunicação... <br> }
-                                Porta 80: Aberta <br> }
-                                Porta 443: Aberta <br> }
-                                Porta 22: Fechada, acesso negado <br> }
-                                Iniciando serviço de banco de dados... <br> }
-                                Tentando conexão com DB em localhost:5432... <br> }
-                                Conexão com DB estabelecida. <br> }
-                                Carregando dados de configuração... OK <br> }
-                                Sincronizando cache de dados... <br> }
-                                Sincronização completa. <br> }
-                                Iniciando servidor web... <br> }
-                                Configurando rotas de API... OK <br> }
-                                Carregando arquivos estáticos... OK <br> }
-                                Servidor iniciado na porta 80. <br> }
-                                Verificando recursos do sistema... <br> }
-                                Memória RAM: 78% utilizada <br> }
-                                CPU: 12% de uso <br> }
-                                Espaço em disco: 85% utilizado <br> }
-                                Verificação de recursos concluída. [<span class="greenReady">READY</span>] <br> }
-                                Carregando interface de usuário... [<span class="greenReady">READY</span>] <br> }
-                                Renderizando componentes... [<span class="greenReady">READY</span>] <br> }
-                                Interface de usuário carregada com sucesso. [<span class="greenReady">READY</span>] <br> }
-                                <span id="inicializando"></span> }
-                                Sistema pronto para uso.
-                               
+                                Iniciando processo... <br>
+                                Verificando arquivos do sistema... <br>
+                                Dependência A: ok <br>
+                                Dependência B: ok <br>
+                                Dependência C: ok <br>
+                                Verificação de integridade concluída. <br> 
+                                Carregando módulos... <br> 
+                                Módulo 1: ok <br>
+                                Módulo 2: ok <br>
+                                Módulo 3: Falha ao carregar, tentando novamente... <br> 
+                                Módulo 3: ok <br> 
+                                Inicialização do serviço de rede... <br> 
+                                Conexão estabelecida. <br> 
+                                Verificando portas de comunicação... <br> 
+                                Porta 80: Aberta <br> 
+                                Porta 443: Aberta <br> 
+                                Porta 22: Fechada, acesso negado <br> 
+                                Iniciando serviço de banco de dados... <br> 
+                                Tentando conexão com DB em localhost:5432... <br> 
+                                Conexão com DB estabelecida. <br> 
+                                Carregando dados de configuração... ok <br> 
+                                Sincronizando cache de dados... <br> 
+                                Sincronização completa. <br> 
+                                Iniciando servidor web... <br> 
+                                Configurando rotas de API... ok <br> 
+                                Carregando arquivos estáticos... ok <br> 
+                                Servidor iniciado na porta 80. <br> 
+                                Verificando recursos do sistema... <br> 
+                                Memória RAM: 78% utilizada <br> 
+                                CPU: 12% de uso <br> 
+                                Espaço em disco: 85% utilizado
                             </p>
-                            <span class="cursor">|</span>
-                        </div>
+                            <p class="sequencyReady">
+                                [<span class="greenReady">READY</span>] Verificação de recursos concluída.
+                            </p>
+                            <p class="sequencyReady">
+                                [<span class="greenReady">READY</span>] Carregando interface de usuário...  
+                            </p>
+                            <p class="sequencyReady"> 
+                                [<span class="greenReady">READY</span>] Renderizando componentes...
+                            </p>
+                             <p class="sequencyReady"> 
+                                [<span class="greenReady">READY</span>] Interface de usuário carregada com sucesso. <br>
+                                <span id="inicializando">2</span> <br>
+                                <span id="sistemReady">Sistema pronto para uso.</span> 
+                            </p>
+                            <p id="contentPreInput">
+                                
+                            </p>
+                            <div id="terminalContainerInput">
+                                
+                                <span class="terminalIdentifier" contenteditable="false"></span>
+                                <div id="terminalInput"contenteditable="true" spellcheck="false"></div>
 
+                            </div>  
+                            
+                            
                     </div>
                 </div>
            </section>

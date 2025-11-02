@@ -1,18 +1,24 @@
 
 
 const path = [
-              "Desktop","Desktop/Portifolio","Desktop/Portifolio/contatos",
-              "Desktop/Portifolio/habilidades","Desktop/Portifolio/Projetos",
+              "Desktop","Desktop/portifolio","Desktop/portifolio/contatos",
+              "Desktop/portifolio/habilidades","Desktop/portifolio/Projetos",
              "Desktop/TrashCan"
             ]
 
 let actualPath = path[0];
-let terminalIdentifier = "PedroSabino@PedroSabino-desktop:~/" + actualPath;
-let ordem = ["fireFoxTab", "blankFolderTab", "docTab", "helpTab", "trashCanTab","textReader"];
-
+const pathTerminal = [
+              "/portifolio","/portifolio/contatos",
+              "/portifolio/habilidades","/portifolio/Projetos"
+]
+let actualPathTerminal = pathTerminal[0]
+let terminalIdentifier = "PedroS@-desktop:~" + actualPathTerminal + ":";
+let ordem = ["fireFoxTab", "blankFolderTab", "docTab", "helpTab", "trashCanTab","textReader","docTab"];
+let typingProcess = false; // guarda a promise em execução
+let stopTyping = false;  
 
 let openTabs = {
-  fireFoxTab: false,
+  fireFoxTab: false,  
   blankFolderTab: false,
   docTab: false,
   helpTab: false,
@@ -110,12 +116,19 @@ elementCK.forEach(element => {
       }
 
       else if(nomeElemento === "docCk"){
-        openTabs.docTab = true;
+        if(!openTabs.docTab){
+          openTabs.docTab = true;
+          openTerminal()
+          actualPathTerminal = pathTerminal[0]
+        }
         tabName = "docTab"
+        
       }
 
       else if(nomeElemento === "helpCk"){
-        openTabs.helpTab= true;
+        if(!openTabs.helpTab){
+          openTabs.helpTab = true;
+        }
         tabName = "helpTab"
       }
 
@@ -145,15 +158,16 @@ elementCK.forEach(element => {
 
       else if(nomeElemento === "blankFolderCk"){
         document.getElementById("folderTab").style.opacity = 0
-         document.getElementById("folderTab").style.display = "none";
+        document.getElementById("folderTab").style.display = "none";
       }
 
       else if(nomeElemento === "docCk"){
-        
+        closeTerminal(false)
       }
 
       else if(nomeElemento === "helpCk"){
-        
+        document.getElementById("helpTab").style.opacity = 0
+        document.getElementById("helpTab").style.display = "none";
       }
 
       else if(nomeElemento === "trashCanCk"){
@@ -164,6 +178,7 @@ elementCK.forEach(element => {
       else if(nomeElemento === "optionsCk"){
         abrirOuFecharOptions(false)
       }
+    
     }
 
     updateBackGround()
@@ -191,9 +206,6 @@ function abrirOuFecharOptions(simOuNao){
  
 }
 
-function openTerminal(){
-
-}
 const optU = document.querySelectorAll(".divUbuntu")
 
 optU.forEach(div => {
@@ -256,8 +268,26 @@ btnClose.forEach(btn =>{
       closePdfReader()
     }
     else if(idDoBotao === "closeUbuntu"){
+     
         abrirOuFecharOptions(false)
+     
+        
       }
+    else if(idDoBotao === "closeIcon-docTab"){
+        if(typingProcess === false){
+        closeTerminal(true)
+      }
+      else{
+        alert("Não feche antes do término da inicialização do programa!")
+      }
+      }
+    else if(idDoBotao === "closeIcon-helpTab"){
+      let elemento = document.getElementById("helpTab");
+      elemento.style.opacity ="0";
+      elemento.style.display = "none";
+      openTabs.helpTab = false;
+      document.getElementById("helpCk").checked = false
+    }
    
     updateBackGround()
 
@@ -292,7 +322,15 @@ btnMin.forEach(btn =>{
     else if(idDoBotao === "minBtn-pdfReader"){
       closePdfReader()
     }
-
+    else if(idDoBotao === "minBtn-docTab"){
+      closeTerminal()
+      }
+    else if(idDoBotao === "minBtn-helpTab"){
+      let elemento = document.getElementById("helpTab");
+      elemento.style.opacity ="0";
+      elemento.style.display = "none";
+      document.getElementById("helpCk").checked = false 
+    }
     updateBackGround()
   })
 })
@@ -312,8 +350,9 @@ let elemento = document.getElementById("fireFoxTab");
 
 
 function abrirAbas(elementoId){
-
+    
     let elemento2 = document.getElementById(elementoId)
+    atualizarOrdem(elementoId)
     pageBorn(elemento2);
 
 }
@@ -517,7 +556,6 @@ let files = document.querySelectorAll(".file")
 
 files.forEach(element =>{
   
-  openTerminal(element)
 
   element.addEventListener('dblclick',(e)=>{
     
@@ -548,19 +586,14 @@ files.forEach(element =>{
       openTextReader("binaryGame")
     }   
     else if(e.currentTarget.id === "habPdf") {
-      openPdfReader("Habilidades")
+      openPdfReader("habilidades")
     }
     else if(e.currentTarget.id === "currPdf") {
-      openPdfReader("Currículo")
+      openPdfReader("currículo")
     }                                                                 
   })
 })
 
-function openTerminal(element){
-  if(element.classList.contains('port_exe')){
-
-  }
-}
 
 function openTextReader(content){
   let btnTxt = document.getElementById("btnFTxt")
@@ -632,7 +665,7 @@ function openPdfReader(content){
   file.style.opacity = "1"
   file.style.display = 'block'
  
- if(content === "Currículo"){
+ if(content === "currículo"){
      elements.forEach(e=>{
     if(e.id === "otherPage"){
        e.onclick = () => {
@@ -822,33 +855,36 @@ const links = document.querySelectorAll('[id$="Link"]')
 
 links.forEach(link=>{
   link.addEventListener('dblclick', () => {
-    if(link.id === "gitLink"){
-      window.open("https://github.com/Sabinosm","_blank")
-    }
-    else if(link.id === "zapLink"){
-      window.open("https://wa.me/5531999268312","_blank")
-    }
-    else if(link.id === "linkedinLink"){
-      window.open("https://www.linkedin.com/in/pedro-sabino-santos-machado","_blank")
-    }
-    else{
-
-    let texto = "https://mail.google.com/mail/u/0/?pli=1#inbox?" + 
-                "compose=GTvVlcSDbhDwbkCKRRMfwZfJtfZJdQRknLrndgq" + 
-                "qxJNBkthJWqbZWrccBLKHCrzxwgmvCzQPqvcpq";
-
-    navigator.clipboard.writeText(texto)
-    .then(() => {
-      alert("Link copiado!");
-    
-      window.open(texto, "_blank");
-    })
-    .catch(err => console.error("Erro:", err));
-    }
+    linkMove(link.id)
   })
 
      
 })
+
+function linkMove(link) {
+  if (link === "gitLink") {
+    window.open("https://github.com/Sabinosm", "_blank");
+  } 
+  else if (link === "zapLink") {
+    window.open("https://wa.me/5531999268312", "_blank");
+  } 
+  else if (link === "linkedinLink") {
+    window.open("https://www.linkedin.com/in/pedro-sabino-santos-machado", "_blank");
+  } 
+  else {
+    const texto = "https://mail.google.com/mail/u/0/?pli=1#inbox?" +
+      "compose=GTvVlcSDbhbDwbkCKRRMfWzfJtZdJQoRknLrndgq" +
+      "qxJNBthJWqbZwrccBLkHCrzxwgmvCzQPqvcpq";
+
+    navigator.clipboard.writeText(texto)
+      .then(() => {
+        alert("Link copiado!");
+        window.open(texto, "_blank");
+      })
+      .catch(err => console.error("Erro:", err));
+  }
+}
+
 
 function searchBar() {
   const nomes = document.querySelectorAll(".searchContent");
@@ -896,14 +932,464 @@ function choosen(elemento){
 
   
 }
-let txtTerminal = document.getElementById("output").innerText
 
-document.getElementById("terminalIdentifier").innerHTML = terminalIdentifier;
+const output = document.getElementById("output");
+const inicializando = document.getElementById("inicializando");
+const terminalTab = document.getElementById("docTab");
+const containerTexto = document.getElementById("textTerminal");
+const fakeInput = document.getElementById("terminalInput");
+const containerInput = document.getElementById("terminalContainerInput");
+let preInput = document.getElementById("contentPreInput");
+let actualInput = document.getElementById("terminalInput").innerText;
+let command = actualInput.split(" ")[1];
 
+const longArray = output.innerText.split("\n");
 
-const longArray = txtTerminal.split("}")
+// Foco automático ao clicar no terminal
+containerTexto.onclick = () => fakeInput.focus();
 
-for (let index = 0; index < longArray.length; index++) {
-  const element = longArray[index];
-  txtTerminal.innerHTML += element
+// Atualiza os identificadores do terminal
+function terminalId() {
+  document.querySelectorAll(".terminalIdentifier").forEach(e => {
+    e.innerHTML = terminalIdentifier;
+  });
 }
+
+
+// Digitação com efeito (simulação de boot)
+async function digitarTexto() {
+  if (typingProcess) return;
+  typingProcess = true
+  stopTyping = false; 
+
+  for (let index = 0; index < longArray.length; index++) {
+    if (stopTyping) {
+      console.log("Programa fechado durante a digitação!");
+      return; // sai imediatamente
+    }
+
+    const element = longArray[index];
+    await digitarLinha(element);
+    await new Promise(r => setTimeout(r, 0.2))
+  }
+  readyAparecendo(true);
+  await carregarPorcentagem();
+
+  document.getElementById("sistemReady").style.opacity = "1";
+  document.getElementById("sistemReady").style.display = "block";
+
+  
+  setTimeout(() => {
+    fakeClear(1, preInput);
+    containerTexto.scrollTop = containerTexto.scrollHeight;
+    preInput.innerHTML += `<span class="terminalIdentifier" contenteditable="false"></span> <br><br>${pathText(1)}`;
+    containerTexto.scrollTop = containerTexto.scrollHeight;
+    terminalId();
+  }, 2000);
+  
+  containerInput.style.opacity = "1";
+  containerInput.style.display = "flex";
+
+  typingProcess = false
+}
+
+async function digitarLinha(texto, delay = 0.2) {
+  for (let char of texto) {
+    output.innerHTML += char;
+    containerTexto.scrollTop = containerTexto.scrollHeight;
+    await new Promise(r => setTimeout(r, delay));
+  }
+  output.innerHTML += "<br>";
+  containerTexto.scrollTop = containerTexto.scrollHeight;
+}
+
+
+async function carregarPorcentagem() {
+  inicializando.innerText = "Inicializando: 0%";
+  for (let i = 0; i <= 100; i++) {
+    inicializando.innerText = `Inicializando: ${i}%`;
+    await new Promise(r => setTimeout(r, 10));
+  }
+  inicializando.innerHTML = "Inicialização concluída.";
+  containerTexto.scrollTop = containerTexto.scrollHeight;
+}
+
+
+
+function fecharPrograma() {
+  stopTyping = true;
+}
+
+async function openTerminal() {
+  terminalId();
+  output.innerText = "";
+  abrirAbas("docTab")
+
+  await digitarTexto()
+  containerTexto.scrollTop = containerTexto.scrollHeight;
+
+}
+
+function closeTerminal(definitivo) {
+  if(definitivo){
+    readyAparecendo(false);
+    fecharPrograma()
+    openTabs.docTab = false
+    docCk.checked = false
+    terminalTab.style.opacity = "0";
+    terminalTab.style.display = "none";
+    containerInput.style.opacity = "0";
+    containerInput.style.display = "none";
+    containerTexto.scrollTop = containerTexto.scrollHeight;
+    preInput.innerHTML = " ";
+    output.innerText = " ";
+    
+    document.getElementById("sistemReady").style.opacity = "0";
+    document.getElementById("sistemReady").style.display = "none";
+
+  }else{
+    terminalTab.style.opacity = "0";
+    terminalTab.style.display = "none";
+  }
+ 
+}
+
+function readyAparecendo(sim) {
+  const readys = document.querySelectorAll(".sequencyReady");
+  if(sim){
+      readys.forEach((e, i) => {
+    setTimeout(() => {
+      e.style.opacity = "1";
+      e.style.display = "block";
+      containerTexto.scrollTop = containerTexto.scrollHeight;
+    }, i * 200);
+  });
+  }
+  else{
+    readys.forEach((e) => {
+    setTimeout(() => {
+      e.style.opacity = "0";
+      e.style.display = "none"
+    }, 1);
+  });
+  }
+}
+
+function fakeClear(num, place) {
+  while (num > 0) {
+    num--;
+    place.innerHTML += "<br>";
+  }
+}
+
+
+function adicionarLinhaTerminal(conteudoHTML) {
+  const linha = document.createElement("div");
+  linha.classList.add("linhaTerminal");
+  linha.innerHTML = conteudoHTML;
+  preInput.appendChild(linha);
+  containerTexto.scrollTop = containerTexto.scrollHeight;
+}
+
+// Exibe resultados do terminal (saída de texto)
+function printTerminalOutput(texto, cor = "#ccc") {
+  const linha = document.createElement("div");
+  linha.classList.add("saidaTerminal");
+  linha.style.color = cor;
+  linha.innerHTML = texto;
+  preInput.appendChild(linha);
+  containerTexto.scrollTop = containerTexto.scrollHeight;
+}
+
+// Textos de cada seção
+function pathText(qual) {
+  let t;
+  if (qual === 1) {
+    t = `Bem-vindo ao meu portfólio! <br>
+        > Use comandos ao estilo Linux se quiser um desafio. <br>
+        > Explore pelos números para um caminho mais rápido. <br>
+        > Ou simplesmente navegue pelas pastas de acordo com sua preferência. <br>
+        <br>
+        [ 1 ]  Sobre mim           → Conheça mais sobre quem eu sou <br>
+        [ 2 ]  Projetos            → Veja o que eu já desenvolvi <br>
+        [ 3 ]  Links e contatos    → Entre em contato comigo <br>
+        [ 4 ]  Habilidades e CV    → Confira minhas competências e currículo <br>
+        [ 5 ]  Comandos            → Confira os comandos usados <br>
+        <br>
+        Digite o número da opção desejada: <br><br>`;
+
+  } else if (qual === 2) {
+    t = `<br>[1] binaryGame.txt  [2] theLastFall.txt [3] cuboMagico.txt [4] Voltar <br><br> 
+         Selecione um projeto, ou use: nano -file.name- para ver sua descrição.<br><br>`;
+  } else if (qual === 3) {
+    t = `<br>Obrigado por entrar em contato comigo :)<br><br>
+        [ 1 ] whatsApp <br>
+        [ 2 ] email <br>
+        [ 3 ] gitHub <br>
+        [ 4 ] linkedin <br>
+        [ 5 ] Voltar <br><br>
+        Digite o número da opção desejada:<br><br>`;
+  } else if (qual === 4) {
+    t = `[1] curriculo.pdf [2] habilidades.pdf [3] Voltar <br><br>
+         Selecione um arquivo, ou use: view -file.name-<br><br>`;
+  } else if (qual === 5) {
+    t = `<br># ---- comandos ----#<br><br>
+          ls, cd -dir-, pwd, nano -file.txt-, view -file.pdf- <br><br>
+          # ---- Árvore de diretórios ----#<br><br>
+          /portfolio<br>
+          ├── sobre-mim.txt<br>
+          ├── projetos/<br>
+          │    ├── theLastFall.txt<br>
+          │    ├── binaryGame.txt<br>
+          │    └── cuboMagico.txt<br>
+          │   <br>
+          ├── contatos/<br>
+          │    ├── email.url<br>
+          │    ├── linkedin.url<br>
+          │    ├── whatsapp.url<br>
+          │    └── github.url<br>
+          │    <br>
+          └── habilidades/<br>
+               ├── habilidades.pdf<br>
+               └── curriculo.pdf<br><br>`;
+  }
+  return t;
+}
+
+function getProjectText(which) {
+  let t;
+  if (which === 1) {
+    t = document.getElementById("theLastFall-txt").innerText;
+  } else if (which === 2) {
+    t = document.getElementById("cuboMagico-txt").innerText;
+  } else {
+    t = document.getElementById("binaryGame-txt").innerText;
+  }
+  return t;
+}
+
+
+fakeInput.addEventListener("input", () => {
+  const texto = fakeInput.innerText;
+  const primeiraPalavra = texto.split(" ")[0] || "";
+  const resto = texto.substring(primeiraPalavra.length);
+  fakeInput.innerHTML = `<span style="color: orange">${primeiraPalavra}</span>${resto}`;
+  
+
+  const range = document.createRange();
+  const sel = window.getSelection();
+  range.selectNodeContents(fakeInput);
+  range.collapse(false);
+  sel.removeAllRanges();
+  sel.addRange(range);
+});
+
+fakeInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    const cmdLine = fakeInput.innerText.trim().split(" ");
+    const cmd = cmdLine[0];
+    const file = cmdLine[1];
+    fakeInput.innerText = "";
+
+    const primeiraPalavra = `<span style="color: orange">${cmd}</span>`;
+    const resto = cmdLine.slice(1).join(" ");
+    const ter = `<span class="terminalIdentifier" contenteditable="false">${terminalIdentifier}</span>`;
+    adicionarLinhaTerminal(`${ter} ${primeiraPalavra} ${resto}`);
+    terminalId();
+
+    cmds( cmd, file);
+  }
+});
+
+
+function cmds(cmd, file) {
+
+  if (cmd === "pwd" || (actualPathTerminal === pathTerminal[0] && cmd === "5")) {
+    printTerminalOutput(pathText(5), "#00ff88");
+  }
+
+  else if (cmd === "nano") {
+    if (actualPathTerminal === pathTerminal[0] && file === "sobreMim.txt") {
+      printTerminalOutput("Abrindo arquivo sobreMim.txt...", "#aaa");
+      openTextReader("sobreMim");
+    }
+
+    else if (actualPathTerminal === pathTerminal[1]) {
+      if (file === "whatsapp.url" || file === "whatsapp" || file === "whatsapp.txt") {
+        linkMove("zapLink");
+      } else if (file === "linkedin.url" || file === "linkedin" || file === "linkedin.txt") {
+        linkMove("linkedinLink");
+      } else if (file === "email.url" || file === "email" || file === "email.txt") {
+        linkMove("emailLink");
+      } else if (file === "gitHub.url" || file === "gitHub" || file === "gitHub.txt") {
+        linkMove("gitLink");
+      } else {
+        printTerminalOutput("Nenhum arquivo com o nome " + file, "red");
+      }
+    }
+
+    else if (actualPathTerminal === pathTerminal[3]) {
+      if (file === "theLastFall.txt") {
+        printTerminalOutput("Abrindo arquivo theLastFall.txt...", "#aaa");
+        openTextReader("theLastFall");
+      } else if (file === "cuboMagico.txt") {
+        printTerminalOutput("Abrindo arquivo cuboMagico.txt...", "#aaa");
+        openTextReader("cuboMagico");
+      } else if (file === "binaryGame.txt") {
+        printTerminalOutput("Abrindo arquivo binaryGame.txt...", "#aaa");
+        openTextReader("binaryGame");
+      } else {
+        printTerminalOutput("Nenhum arquivo com o nome " + file, "red");
+      }
+    }
+
+    else {
+      printTerminalOutput("Nenhum arquivo com o nome " + file, "red");
+    }
+  }
+
+  else if (cmd === "view") {
+    if (actualPathTerminal === pathTerminal[2]) {
+      if (file === "habilidades.pdf") {
+        printTerminalOutput("Abrindo habilidades.pdf...", "#aaa");
+        openPdfReader("habilidades");
+      } else if (file === "curriculo.pdf") {
+        printTerminalOutput("Abrindo curriculo.pdf...", "#aaa");
+        openPdfReader("curriculo");
+      } else {
+        printTerminalOutput("Arquivo não encontrado: " + file, "red");
+      }
+    } else {
+      printTerminalOutput("Arquivo não encontrado: " + file, "red");
+    }
+  }
+
+  else if (cmd === "ls") {
+    if (actualPathTerminal === pathTerminal[0]) {
+      printTerminalOutput("sobreMim.txt  /projetos  /contatos  /habilidades", "#5294E2");
+    } else if (actualPathTerminal === pathTerminal[1]) {
+      printTerminalOutput(pathText(3), "#5294E2");
+    } else if (actualPathTerminal === pathTerminal[2]) {
+      printTerminalOutput(pathText(4), "#5294E2");
+    } else if (actualPathTerminal === pathTerminal[3]) {
+      printTerminalOutput(pathText(2), "#5294E2");
+    }
+  }
+
+  else if (cmd === "cd") {
+    if (!file.includes("/portifolio")) file = "/portifolio" + file;
+
+    if (file === actualPathTerminal) {
+      printTerminalOutput("Você se encontra neste diretório", "#00ff88");
+    } else if (file === "/portifolio/projetos") {
+      changePathTerminal(3);
+      printTerminalOutput("Diretório alterado para " + file, "#00ff88");
+    } else if (file === "/portifolio/habilidades") {
+      changePathTerminal(2);
+      printTerminalOutput("Diretório alterado para " + file, "#00ff88");
+    } else if (file === "/portifolio/contatos") {
+      changePathTerminal(1);
+      printTerminalOutput("Diretório alterado para " + file, "#00ff88");
+    } else if (file === "/portifolio") {
+      changePathTerminal(0);
+      printTerminalOutput("Diretório alterado para " + file, "#00ff88");
+    } else {
+      printTerminalOutput("Diretório não encontrado: " + file, "red");
+    }
+  }
+
+  else if (actualPathTerminal === pathTerminal[0]) {
+    if (cmd === "1") {
+      printTerminalOutput("Abrindo arquivo sobreMim.txt...", "#aaa");
+      openTextReader("sobreMim");
+    } else if (cmd === "2") {
+      changePathTerminal(3);
+      printTerminalOutput("Diretório alterado para " + pathTerminal[3], "#00ff88");
+      printTerminalOutput(pathText(2), "#5294E2");
+    } else if (cmd === "3") {
+      changePathTerminal(1);
+      printTerminalOutput("Diretório alterado para " + pathTerminal[1], "#00ff88");
+      printTerminalOutput(pathText(3), "#5294E2");
+    } else if (cmd === "4") {
+      changePathTerminal(2);
+      printTerminalOutput("Diretório alterado para " + pathTerminal[2], "#00ff88");
+      printTerminalOutput(pathText(4), "#5294E2");
+    } else {
+      printTerminalOutput(`${cmd}: comando não encontrado`, "red");
+    }
+  }
+
+  else if (actualPathTerminal === pathTerminal[1]) {
+    if (cmd === "1") {
+      linkMove("zapLink");
+    } else if (cmd === "2") {
+      linkMove("emailLink");
+    } else if (cmd === "3") {
+      linkMove("gitLink");
+    } else if (cmd === "4") {
+      linkMove("linkedinLink");
+    } else if (cmd === "5") {
+      printTerminalOutput("Diretório alterado para " + pathTerminal[0], "#00ff88");
+      changePathTerminal(0);
+    } else {
+      printTerminalOutput(`${cmd}: comando não encontrado`, "red");
+    }
+  }
+
+  else if (actualPathTerminal === pathTerminal[2]) {
+    if (cmd === "1") {
+      printTerminalOutput("Abrindo habilidades.pdf...", "#aaa");
+      openPdfReader("habilidades");
+    } else if (cmd === "2") {
+      printTerminalOutput("Abrindo curriculo.pdf...", "#aaa");
+      openPdfReader("curriculo");
+    } else if(cmd = "3"){
+      printTerminalOutput("Diretório alterado para " + pathTerminal[0], "#00ff88");
+      changePathTerminal(0);
+    }else {
+      printTerminalOutput(`${cmd}: comando não encontrado`, "red");
+    }
+  }
+
+  else if (actualPathTerminal === pathTerminal[3]) {
+    if (cmd === "1") {
+      printTerminalOutput("Abrindo arquivo binaryGame.txt...", "#aaa");
+      openTextReader("binaryGame");
+    } else if (cmd === "2") {
+      printTerminalOutput("Abrindo arquivo theLastFall.txt...", "#aaa");
+      openTextReader("theLastFall");
+    } else if (cmd === "3") {
+      printTerminalOutput("Abrindo arquivo cuboMagico.txt...", "#aaa");
+      openTextReader("cuboMagico");
+    } else if(cmd==="4"){
+      printTerminalOutput("Diretório alterado para " + pathTerminal[0], "#00ff88");
+      changePathTerminal(0);
+    }else {
+     printTerminalOutput(`${cmd}: comando não encontrado`, "red");
+    }
+  }
+
+  else {
+    printTerminalOutput(`${cmd}: comando não encontrado`, "red");
+  }
+}
+
+function changePathTerminal(index) {
+  if(index === 0){
+    printTerminalOutput(`<span class="terminalIdentifier" contenteditable="false"></span> <br><br>${pathText(1)}`)
+  }
+  actualPathTerminal = pathTerminal[index];
+  terminalIdentifier = "PSSM@-desktop:~" + actualPathTerminal + ":";
+  console.log(actualPathTerminal)
+  terminalId();
+}
+
+let portExe = document.querySelectorAll(".port_exe")
+portExe.forEach(e => {
+  e.ondblclick = () => docCk.click();
+});
+
+
+//todo -> Media
+//TODO -> habPdf
