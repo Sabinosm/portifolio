@@ -1350,10 +1350,10 @@ function cmds(cmd, file) {
   else if (actualPathTerminal === pathTerminal[2]) {
     if (cmd === "1") {
       printTerminalOutput("Abrindo habilidades.pdf...", "#aaa");
-      openPdfReader("habilidades");
+      openPdfReader("curriculo");
     } else if (cmd === "2") {
       printTerminalOutput("Abrindo curriculo.pdf...", "#aaa");
-      openPdfReader("curriculo");
+      openPdfReader("habilidades");
     } else if(cmd = "3"){
       printTerminalOutput("Diretório alterado para " + pathTerminal[0], "#00ff88");
       changePathTerminal(0);
@@ -1403,4 +1403,3 @@ portExe.forEach(e => {
 
 
 //todo -> Media
-//TODO -> habPdf
