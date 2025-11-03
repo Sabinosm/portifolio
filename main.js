@@ -1140,7 +1140,7 @@ function pathText(qual) {
         [ 5 ] Voltar <br><br>
         Digite o número da opção desejada:<br><br>`;
   } else if (qual === 4) {
-    t = `[1] curriculo.pdf [2] habilidades.pdf [3] Voltar <br><br>
+    t = `<br>[1] curriculo.pdf [2] habilidades.pdf [3] Voltar <br><br>
          Selecione um arquivo, ou use: view -file.name-<br><br>`;
   } else if (qual === 5) {
     t = `<br># ---- comandos ----#<br><br>
@@ -1403,3 +1403,4 @@ portExe.forEach(e => {
 
 
 //todo -> Media
+
