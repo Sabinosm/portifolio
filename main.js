@@ -589,7 +589,7 @@ files.forEach(element =>{
       openPdfReader("habilidades")
     }
     else if(e.currentTarget.id === "currPdf") {
-      openPdfReader("currículo")
+      openPdfReader("curriculo")
     }                                                                 
   })
 })
@@ -659,13 +659,14 @@ function openPdfReader(content){
 
   abrirAbas("pdfReader")
 
-  document.getElementById("fileName").innerHTML = content + ".txt"
-  let file = document.getElementById(content + "-pdf")
-
+  document.getElementById("fileNamePdf").innerHTML = content + ".pdf"
+  let file = document.getElementById(content+"-pdf")
+  console.log(file)
+  console.log(content)
   file.style.opacity = "1"
   file.style.display = 'block'
- 
- if(content === "currículo"){
+  
+ if(content === "curriculo"){
      elements.forEach(e=>{
     if(e.id === "otherPage"){
        e.onclick = () => {
@@ -683,34 +684,43 @@ function openPdfReader(content){
   })
  }
  else{
+  elements.forEach(e=>{
   if(e.id === "otherPage"){
        e.onclick = () => {
-        window.open("imagens/PSSM_curriculo.pdf","_blank")
+        window.open("imagens/habilidades.pdf","_blank")
        }
     }
     else{
       e.onclick = () => {
         const link = document.createElement('a');
-        link.href = 'imagens/PSSM_curriculo.pdf';          // caminho do arquivo
-        link.download = 'curriculo-Pedro-Sabino.pdf';  // nome que será salvo
+        link.href = 'imagens/habilidades.pdf';          // caminho do arquivo
+        link.download = 'habilidades.pdf';  // nome que será salvo
         link.click(); 
        }
     }
+  })
  }
 
   
 }
 function closePdfReader(){
   let pdf = document.getElementById("pdfReader")
- pdf.style.opacity = "0";
- pdf.style.display = "none";
+  pdf.style.opacity = "0";
+  pdf.style.display = "none";
 
   const imagens = document.querySelectorAll(".pdfs")
-
   imagens.forEach(e => {
     e.style.opacity = "0";
     e.style.display = "none";
   })
+  
+  const pdfs = document.querySelectorAll(".pdfs-img")
+
+  pdfs.forEach(e => {
+    e.style.opacity = "0"
+    e.style.display = "none"
+  })
+
 
 }
 
@@ -1380,7 +1390,8 @@ function changePathTerminal(index) {
     printTerminalOutput(`<span class="terminalIdentifier" contenteditable="false"></span> <br><br>${pathText(1)}`)
   }
   actualPathTerminal = pathTerminal[index];
-  terminalIdentifier = "PSSM@-desktop:~" + actualPathTerminal + ":";
+  terminalIdentifier = "PedroS@-desktop:~" + actualPathTerminal + ":";
+  
   console.log(actualPathTerminal)
   terminalId();
 }

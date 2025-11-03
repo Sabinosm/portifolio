@@ -1271,6 +1271,7 @@ background-color: VAR(--HOVERTABBUTTOM);
 .terminalIdentifier{
     color: #26A168;
     width: fit-content;
+    white-space: nowrap;
 }
 .greenReady{
   color: #00ff66;
@@ -1356,4 +1357,8 @@ background-color: VAR(--HOVERTABBUTTOM);
 .greenHelp{
     color: #26A168;
     font-weight: bold;
+}
+.pdfs-img{
+    display: none;
+    opacity: 0;
 }
