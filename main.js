@@ -1140,7 +1140,7 @@ function pathText(qual) {
         [ 5 ] Voltar <br><br>
         Digite o número da opção desejada:<br><br>`;
   } else if (qual === 4) {
-    t = `<br>[1] curriculo.pdf [2] habilidades.pdf [3] Voltar <br><br>
+    t = `[1] curriculo.pdf [2] habilidades.pdf [3] Voltar <br><br>
          Selecione um arquivo, ou use: view -file.name-<br><br>`;
   } else if (qual === 5) {
     t = `<br># ---- comandos ----#<br><br>
@@ -1350,10 +1350,10 @@ function cmds(cmd, file) {
   else if (actualPathTerminal === pathTerminal[2]) {
     if (cmd === "1") {
       printTerminalOutput("Abrindo habilidades.pdf...", "#aaa");
-      openPdfReader("curriculo");
+      openPdfReader("habilidades");
     } else if (cmd === "2") {
       printTerminalOutput("Abrindo curriculo.pdf...", "#aaa");
-      openPdfReader("habilidades");
+      openPdfReader("curriculo");
     } else if(cmd = "3"){
       printTerminalOutput("Diretório alterado para " + pathTerminal[0], "#00ff88");
       changePathTerminal(0);
@@ -1403,4 +1403,4 @@ portExe.forEach(e => {
 
 
 //todo -> Media
-
+//TODO -> habPdf
