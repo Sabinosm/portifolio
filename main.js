@@ -539,70 +539,57 @@ function animate() {
 }
 
 let newX = 0, newY = 0, startX = 0, startY = 0;
-
 const topBar = document.querySelectorAll('[id*="top_"]');
 
 topBar.forEach(bar => {
-  bar.addEventListener('mousedown', (e) => mouseDown(e, bar));
-   bar.addEventListener('touchstart', (e) => mouseDown(e, bar));
-
+  bar.addEventListener('mousedown', e => startDrag(e, bar));
+  bar.addEventListener('touchstart', e => startDrag(e, bar), { passive: false });
 });
 
-function mouseDown(e, bar) {
+function startDrag(e, bar) {
   e.preventDefault();
 
   const aba = bar.closest(".floatingTabs");
 
-  startX = e.clientX;
-  startY = e.clientY;
 
-  function onMouseMove(event) {
-    mouseMove(event, aba);
+  const isTouch = e.type.startsWith("touch");
+  const pos = isTouch ? e.touches[0] : e;
+
+  startX = pos.clientX;
+  startY = pos.clientY;
+
+  function onMove(ev) {
+    const p = ev.type.startsWith("touch") ? ev.touches[0] : ev;
+
+    newX = startX - p.clientX;
+    newY = startY - p.clientY;
+    startX = p.clientX;
+    startY = p.clientY;
+
+    let nextLeft = aba.offsetLeft - newX;
+    let nextTop = aba.offsetTop - newY;
+
+    const maxX = window.innerWidth - aba.offsetWidth;
+    const maxY = window.innerHeight - aba.offsetHeight;
+
+    nextLeft = Math.max(0, Math.min(nextLeft, maxX));
+    nextTop = Math.max(0, Math.min(nextTop, maxY));
+
+    aba.style.left = nextLeft + "px";
+    aba.style.top = nextTop + "px";
   }
 
-  function onMouseUp() {
-    document.removeEventListener('mousemove', onMouseMove);
-    document.removeEventListener('mouseup', onMouseUp);
-
-    document.addEventListener('touchmove', e => {
-          e.preventDefault(); 
-          onMouseMove(e);     
-    }, { passive: false });
-    document.removeEventListener('mouseup', onMouseUp);
+  function onEnd() {
+    document.removeEventListener("mousemove", onMove);
+    document.removeEventListener("mouseup", onEnd);
+    document.removeEventListener("touchmove", onMove);
+    document.removeEventListener("touchend", onEnd);
   }
 
-  document.addEventListener('mousemove', onMouseMove);
-  document.addEventListener('touchend', onMouseUp);
-
-   document.addEventListener('touchmove', e => {
-    e.preventDefault(); 
-    onMouseMove(e);    
-  }, { passive: false });
-  document.addEventListener('touchend', onMouseUp); 
-}
-
-function mouseMove(e, aba) {
-  e.preventDefault();
-
-  const tab = aba;
-
-  newX = startX - e.clientX;
-  newY = startY - e.clientY;
-
-  startX = e.clientX;
-  startY = e.clientY;
-
-  let nextLeft = tab.offsetLeft - newX;
-  let nextTop = tab.offsetTop - newY;
-
-  const maxX = window.innerWidth + 400 - tab.offsetWidth;
-  const maxY = window.innerHeight + 400 - tab.offsetHeight;
-
-  nextLeft = Math.max(0, Math.min(nextLeft, maxX));
-  nextTop = Math.max(0, Math.min(nextTop, maxY));
-
-  tab.style.left = nextLeft + 'px';
-  tab.style.top = nextTop + 'px';
+  document.addEventListener("mousemove", onMove);
+  document.addEventListener("mouseup", onEnd);
+  document.addEventListener("touchmove", onMove, { passive: false });
+  document.addEventListener("touchend", onEnd);
 }
 
 let files = document.querySelectorAll(".file")
