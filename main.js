@@ -26,6 +26,31 @@ let openTabs = {
   optionsTab: false
 }
 
+
+let estadoTela = ""; 
+const retrato = window.matchMedia("(orientation: portrait) and (max-width: 650px)");
+const larguraMaior = window.matchMedia("(min-width: 750px)");
+const paisagem = window.matchMedia("(orientation: landscape) and (max-width: 1300px)");
+
+
+function addDoubleClick(el, handler) {
+  let lastTouch = 0;
+  
+  // desktop
+  el.addEventListener('dblclick', handler);
+
+  // mobile
+  el.addEventListener('touchend', e => {
+    const now = Date.now();
+    if (now - lastTouch < 300) { // 2 toques em menos de 300ms
+      e.preventDefault(); // evita zoom duplo no celular
+      handler(e);
+    }
+    lastTouch = now;
+  });
+}
+
+
 function showDate() {
     
     const monthNames = ["jan", "fev", "mar", "abr", "maio", "jun", "jul", "ago", "set", "out", "nov", "dez"];
@@ -83,6 +108,10 @@ floatingTabs.forEach(tab => {
 
   // Segurar o botão (mousedown)
   tab.addEventListener("mousedown", () => {
+    atualizarOrdem(tab.id);
+  });
+
+  tab.addEventListener("touchstart", () => {
     atualizarOrdem(tab.id);
   });
 });
@@ -356,13 +385,15 @@ function abrirAbas(elementoId){
     pageBorn(elemento2);
 
 }
-document.getElementById("foldDesk").ondblclick = function(){
+const foldDesk = document.getElementById("foldDesk");
+
+addDoubleClick(foldDesk, () => {
   openTabs.blankFolderTab = true;
-  document.getElementById("blankFolderCk").checked = true 
+  document.getElementById("blankFolderCk").checked = true;
   changePathName(1);
   abrirAbas("folderTab");
   updateBackGround();
-}
+});
 
 function updateBackGround() {
   const menus = document.querySelectorAll(".selectionMenu");
@@ -394,9 +425,16 @@ updateBackGround();
 
 function pageBorn(elemento){
   let element = elemento;
-    
+
+  if(estadoTela === "outro"){
+        
   const x = Math.random() * (950 - 700) + 700
   const y = Math.random() * (200 - 100) + 100
+  }
+  else{
+    const x = Math.random() * (250 - 150) + 150
+    const y = Math.random() * (30 - 10) + 10
+  }
 
   if(element.style.opacity === "0"){
      element.style.left = x + 'px'
@@ -405,8 +443,9 @@ function pageBorn(elemento){
 
   element.style.opacity = "1";
   element.style.display = "block";
+  }
 
-}
+
 
 function changePathName(num){
   
@@ -505,6 +544,8 @@ const topBar = document.querySelectorAll('[id*="top_"]');
 
 topBar.forEach(bar => {
   bar.addEventListener('mousedown', (e) => mouseDown(e, bar));
+   bar.addEventListener('touchstart', (e) => mouseDown(e, bar));
+
 });
 
 function mouseDown(e, bar) {
@@ -522,10 +563,22 @@ function mouseDown(e, bar) {
   function onMouseUp() {
     document.removeEventListener('mousemove', onMouseMove);
     document.removeEventListener('mouseup', onMouseUp);
+
+    document.addEventListener('touchmove', e => {
+          e.preventDefault(); 
+          onMouseMove(e);     
+    }, { passive: false });
+    document.removeEventListener('mouseup', onMouseUp);
   }
 
   document.addEventListener('mousemove', onMouseMove);
-  document.addEventListener('mouseup', onMouseUp);
+  document.addEventListener('touchend', onMouseUp);
+
+   document.addEventListener('touchmove', e => {
+    e.preventDefault(); 
+    onMouseMove(e);    
+  }, { passive: false });
+  document.addEventListener('touchend', onMouseUp); 
 }
 
 function mouseMove(e, aba) {
@@ -554,45 +607,24 @@ function mouseMove(e, aba) {
 
 let files = document.querySelectorAll(".file")
 
-files.forEach(element =>{
-  
+files.forEach(element => {
+  addDoubleClick(element, e => {
+    console.log(element);
 
-  element.addEventListener('dblclick',(e)=>{
-    
-    console.log(element)
-    
-    if(e.currentTarget.id === "sobreMim"){
-      openTextReader("sobreMim")
+    switch (e.currentTarget.id) {
+      case "sobreMim": openTextReader("sobreMim"); break;
+      case "hab": goTo(3); break;
+      case "contato": goTo(2); break;
+      case "projetos": goTo(4); break;
+      case "portifolio": goTo(1); break;
+      case "theLastFall": openTextReader("theLastFall"); break;
+      case "cuboMagico": openTextReader("cuboMagico"); break;
+      case "binaryGame": openTextReader("binaryGame"); break;
+      case "habPdf": openPdfReader("habilidades"); break;
+      case "currPdf": openPdfReader("curriculo"); break;
     }
-    else if(e.currentTarget.id === "hab"){
-      goTo(3)
-    }
-    else if(e.currentTarget.id === "contato"){
-       goTo(2)
-    }
-    else if(e.currentTarget.id === "projetos"){
-       goTo(4)
-    }
-    else if(e.currentTarget.id === "portifolio"){
-      goTo(1)
-    }
-    else if(e.currentTarget.id === "theLastFall"){
-      openTextReader("theLastFall")
-    }
-    else if(e.currentTarget.id === "cuboMagico"){
-      openTextReader("cuboMagico")
-    }
-    else if(e.currentTarget.id === "binaryGame"){
-      openTextReader("binaryGame")
-    }   
-    else if(e.currentTarget.id === "habPdf") {
-      openPdfReader("habilidades")
-    }
-    else if(e.currentTarget.id === "currPdf") {
-      openPdfReader("curriculo")
-    }                                                                 
-  })
-})
+  });
+});
 
 
 function openTextReader(content){
@@ -861,6 +893,7 @@ input.addEventListener("keyup", (e) => {
   }
 });
 
+let ultimoToque = 0;
 const links = document.querySelectorAll('[id$="Link"]')
 
 links.forEach(link=>{
@@ -868,7 +901,14 @@ links.forEach(link=>{
     linkMove(link.id)
   })
 
-     
+    link.addEventListener('touchend', e => {
+    const agora = Date.now();
+    if (agora - ultimoToque < 300) { 
+      e.preventDefault(); 
+      linkMove(link.id);
+    }
+    ultimoToque = agora;
+  });
 })
 
 function linkMove(link) {
@@ -1348,10 +1388,10 @@ function cmds(cmd, file) {
   }
 
   else if (actualPathTerminal === pathTerminal[2]) {
-    if (cmd === "1") {
+    if (cmd === "2") {
       printTerminalOutput("Abrindo habilidades.pdf...", "#aaa");
       openPdfReader("habilidades");
-    } else if (cmd === "2") {
+    } else if (cmd === "1") {
       printTerminalOutput("Abrindo curriculo.pdf...", "#aaa");
       openPdfReader("curriculo");
     } else if(cmd = "3"){
@@ -1396,11 +1436,31 @@ function changePathTerminal(index) {
   terminalId();
 }
 
-let portExe = document.querySelectorAll(".port_exe")
+let portExe = document.querySelectorAll(".port_exe");
+
 portExe.forEach(e => {
-  e.ondblclick = () => docCk.click();
+  addDoubleClick(e, () => docCk.click());
 });
 
 
-//todo -> Media
-//TODO -> habPdf
+
+function atualizarEstado() {
+  if (retrato.matches) {
+    estadoTela = "retrato";
+  } else if (larguraMaior.matches) {
+    estadoTela = "larguraMaior";
+  } else if (paisagem.matches) {
+    estadoTela = "paisagem";
+  } else {
+    estadoTela = "outro";
+  }
+
+  console.log("Estado atual:", estadoTela);
+}
+
+
+atualizarEstado();
+
+[retrato, larguraMaior, paisagem].forEach(media =>
+  media.addEventListener("change", atualizarEstado)
+);

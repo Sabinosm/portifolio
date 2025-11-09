@@ -12,7 +12,7 @@ body{
 header{
    background-color: var(--headerColor);
    width: 100%;
-   height: 30px; 
+   height: 3vh; 
    font-family: "Ubuntu Mono", monospace;
    color: var(--txtColor);
    display: flex;
@@ -115,7 +115,7 @@ header img:hover{
 }
 #menu{
     background-color: var(--bgMenu);
-    height: 904px;
+    height: 94.5vh;
     width: 90px;
     display: flex;
     align-items: center;
@@ -131,7 +131,7 @@ header img:hover{
 }
 #desktopMenu{
     width: 100%;
-    height: 904px;
+    height: 94.5vh;
     position: relative;
     display: flex;
 }
@@ -540,7 +540,7 @@ background-color: VAR(--HOVERTABBUTTOM);
 }
 #fireFoxTab{
     width: 48%;
-    height: 550px;
+    height: 60%;
     position: fixed;
     left: 950px;
     top: 300px;
@@ -1396,10 +1396,7 @@ background-color: VAR(--HOVERTABBUTTOM);
  }
  @media(orientation: landscape) and (max-width: 1300px){
     body{
-        font-size: 10px;
-    }
-    header{
-        height: 20px;
+        font-size: 12px;
     }
     #dateHour{
         margin-left: 37%;
@@ -1410,7 +1407,7 @@ background-color: VAR(--HOVERTABBUTTOM);
         height: 12px;
     }
     #menu{
-        height: 420px;
+        height: 94vh;
         width: 90px;
     }
     #menu div{
@@ -1418,7 +1415,7 @@ background-color: VAR(--HOVERTABBUTTOM);
     }
     #desktopMenu{
         width: 100%;
-        height: 420px;
+        height: 94vh;
     }
     #line{
         width: 60%;
@@ -1446,7 +1443,137 @@ background-color: VAR(--HOVERTABBUTTOM);
     }
     #foldDesk img{
         height: 45px;
-    }   
+    }
+    #folderTab{
+        top: 100px;
+        left: 150px;
+        width: 70%;
+        
+    }
+    #folderTab button{
+        width: 25px;
+        height: 25px;
+    }
+    #folderTab a{
+        width: 25px;
+        height: 25px;
+    }
+    #btnTopTab{
+        right: -2px;
+    }
+    #top_folderTab div{
+        width: 50%;
+    }
+    #fireFoxTab{
+        top: 50px;
+        left: 150px;
+        height: 75%;
+        width: 75%;
+    }
+    #contentFF button{
+        bottom: 70px;
+    }
+    #leftNav{
+        width: 17%;
+    }
+    #folderMain{
+        width: 83%;
+    }
+    #foldDesk img{
+        height: 45px;
+    }
+    #trashCanTab{
+        top: 50px;
+        left: 150px;
+        width: 70%;
+        height: 60%;
+    }
+    #trashCanTab button{
+        width: 25px;
+        height: 25px;
+    }
+    #trashCanTab a{
+        width: 25px;
+        height: 25px;
+    }
+    #btnTrashTab{
+        right: -2px;
+    }
+    #top_trash div{
+        width: 50%;
+    }
+    #helpTab{
+        top: 50px;
+        left: 150px;
+        width: 30%;
+        height: 60%;
+    }
+    #helpTabContent{
+        height: 100%;
+    }
+    #docTab{
+         top: 50px;
+        left: 150px;
+        width: 60%;
+        height: 60%;
+    }
+    #mainTerminal{
+        font-size: 14px;
+        height: 100%;
+    }
+    #topDocBtn{
+        right: -2px;
+        width: 180px;
+    }
+    #top_DocBtn button{
+        width: 25px;
+        height: 25px;
+    }
+    #top_docTab a{
+        width: 25px;
+        height: 25px;
+    }
+    #top_docTab div{
+        width: 25px;
+        height: 25px;
+    }
+    #textReader{
+        top: 20px;
+        left: 100px;
+        width: 40%;
+        height: 70%;
+    }
+    #mainContentTxtR{
+        height: 100%;
+    }
+    #pdfReader{
+        top: 20px;
+        left: 100px;
+        width: 75%;
+        height: 75%;
+    }
+    #mainContentPdf{
+        height: 100%;
+    }
+    #bottomMenu{
+        justify-content: center;
+        align-items: center;
+    }
+    #closeUbuntu{
+    top: 15px;
+    right: 80px;
+    width: 30px;
+    height: 30px;
+    }
+    .divUbuntu img{
+        width: 50px;
+    }
+    #bottomMenu{
+        position: absolute;
+    bottom: 5vh;
+   
+    }
     
-
 }
+
+/* atualizar js */
