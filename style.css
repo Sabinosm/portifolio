@@ -1573,7 +1573,9 @@ background-color: VAR(--HOVERTABBUTTOM);
     bottom: 5vh;
    
     }
+    .default{
+        width: 60vh;
+    }
+    
     
 }
-
-/* atualizar js */

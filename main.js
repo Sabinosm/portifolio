@@ -35,21 +35,21 @@ const paisagem = window.matchMedia("(orientation: landscape) and (max-width: 130
 
 function addDoubleClick(el, handler) {
   let lastTouch = 0;
-  
-  // desktop
   el.addEventListener('dblclick', handler);
-
-  // mobile
   el.addEventListener('touchend', e => {
     const now = Date.now();
-    if (now - lastTouch < 300) { // 2 toques em menos de 300ms
-      e.preventDefault(); // evita zoom duplo no celular
+    if (now - lastTouch < 1000) { 
+      e.preventDefault(); 
       handler(e);
     }
     lastTouch = now;
   });
 }
 
+function addTouch(el, handler) {
+  el.addEventListener('click', handler);
+  el.addEventListener('touch', handler);
+}
 
 function showDate() {
     
@@ -253,7 +253,7 @@ optU.forEach(div => {
       document.getElementById("fireFoxCk").click();
     }
     else{
-      document.getElementById("docCk").click(); //portifolio
+      document.getElementById("docCk").click();
     }
   })
 })
@@ -264,8 +264,7 @@ optU.forEach(div => {
 const btnClose = document.querySelectorAll(".closeIcon");
 
 btnClose.forEach(btn =>{
-  btn.addEventListener('click',function(){
-    
+  btn.addEventListener('click', function(){
     let idDoBotao = btn.id;
     if(idDoBotao === "closeIcon-blankFolder"){
       let elemento = document.getElementById("folderTab");
@@ -322,7 +321,8 @@ btnClose.forEach(btn =>{
 
     
   })
-})
+  })
+  
 
 
 const btnMin = document.querySelectorAll(".minBtn");
@@ -424,16 +424,21 @@ updateBackGround();
 
 
 function pageBorn(elemento){
+  
   let element = elemento;
-
+  let x;
+  let y;
   if(estadoTela === "outro"){
-        
-  const x = Math.random() * (950 - 700) + 700
-  const y = Math.random() * (200 - 100) + 100
+  x = Math.random() * (950 - 700) + 700
+  y = Math.random() * (200 - 100) + 100
   }
   else{
-    const x = Math.random() * (250 - 150) + 150
-    const y = Math.random() * (30 - 10) + 10
+  //  const abas = document.querySelectorAll("floatingTabs")
+  //  abas.forEach(
+    
+  //  )
+   x = Math.random() * (250 - 150) + 150
+   y = Math.random() * (30 - 10) + 10
   }
 
   if(element.style.opacity === "0"){
@@ -543,26 +548,28 @@ const topBar = document.querySelectorAll('[id*="top_"]');
 
 topBar.forEach(bar => {
   bar.addEventListener('mousedown', e => startDrag(e, bar));
-  bar.addEventListener('touchstart', e => startDrag(e, bar), { passive: false });
 });
 
 function startDrag(e, bar) {
+  // Garante que o evento é de mouse, não de toque.
+  if (!e.type.startsWith("mouse")) {
+    return;
+  }
+  
   e.preventDefault();
 
   const aba = bar.closest(".floatingTabs");
 
-
-  const isTouch = e.type.startsWith("touch");
-  const pos = isTouch ? e.touches[0] : e;
-
-  startX = pos.clientX;
-  startY = pos.clientY;
+  let startX = e.clientX;
+  let startY = e.clientY;
 
   function onMove(ev) {
-    const p = ev.type.startsWith("touch") ? ev.touches[0] : ev;
 
-    newX = startX - p.clientX;
-    newY = startY - p.clientY;
+    const p = ev;
+
+    const newX = startX - p.clientX;
+    const newY = startY - p.clientY;
+    
     startX = p.clientX;
     startY = p.clientY;
 
@@ -580,16 +587,16 @@ function startDrag(e, bar) {
   }
 
   function onEnd() {
+
     document.removeEventListener("mousemove", onMove);
     document.removeEventListener("mouseup", onEnd);
-    document.removeEventListener("touchmove", onMove);
-    document.removeEventListener("touchend", onEnd);
+  
   }
+
 
   document.addEventListener("mousemove", onMove);
   document.addEventListener("mouseup", onEnd);
-  document.addEventListener("touchmove", onMove, { passive: false });
-  document.addEventListener("touchend", onEnd);
+
 }
 
 let files = document.querySelectorAll(".file")
@@ -851,7 +858,6 @@ goFront.onclick = function () {
   }
 };
 
-// Inicia o estado
 changePathName(0);
 updateButtons();
 
@@ -865,8 +871,6 @@ restart.forEach(ele => {
 
 function reboot(){
   contentFF.classList.add('hidden');
-
-  // após a transição, “reinicia” (fade-in)
   setTimeout(() => {
     contentFF.classList.remove('hidden');
   }, 100);
