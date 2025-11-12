@@ -403,23 +403,22 @@ function updateBackGround() {
     const checkboxId = checkbox.id;
     const tabName = checkboxId.replace("Ck", "Tab");
 
-    // Remove todas as classes de controle
     menu.classList.remove("show-after", "active", "inactive", "bg-active");
 
-    // Se a aba estiver aberta
+
     if (openTabs[tabName]) {
-      menu.classList.add("show-after"); // after aparece
+      menu.classList.add("show-after"); 
       if (checkbox.checked) {
-        menu.classList.add("active", "bg-active"); // checkbox marcada → after grande + background
+        menu.classList.add("active", "bg-active"); 
       } else {
-        menu.classList.add("inactive"); // checkbox desmarcada → after pequeno, sem background
+        menu.classList.add("inactive"); 
       }
     }
-    // Se aba fechada → nada aparece (nenhuma classe)
+   
   });
 }
 
-// Inicializa
+
 updateBackGround();
 
 
@@ -433,10 +432,18 @@ function pageBorn(elemento){
   y = Math.random() * (200 - 100) + 100
   }
   else{
-  //  const abas = document.querySelectorAll("floatingTabs")
-  //  abas.forEach(
-    
-  //  )
+    // em construção reparos
+  // const abas = document.querySelectorAll("floatingTabs")
+  //  abas.forEach( a => {
+  //     if(a.style.display ==! "none"){
+  //       a.style.display = "none"
+  //       a.style.opacity = "0"
+  //     }
+  //  }
+  //   )
+  // element.style.opacity = "1"
+  // element.style.display = "block"
+
    x = Math.random() * (250 - 150) + 150
    y = Math.random() * (30 - 10) + 10
   }
@@ -551,7 +558,7 @@ topBar.forEach(bar => {
 });
 
 function startDrag(e, bar) {
-  // Garante que o evento é de mouse, não de toque.
+
   if (!e.type.startsWith("mouse")) {
     return;
   }
